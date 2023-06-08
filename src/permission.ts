@@ -22,9 +22,13 @@ router.beforeEach(async(
       } else {
         try {
           const { roles } = await userStore.GET_USER_INFO()
-          const accessRoutes = await permissionStore.SET_ROUTES(roles)
-          console.log('accessRoutes===', accessRoutes)
-          next({ ...to, replace: true })
+          if(roles) {
+            await permissionStore.SET_ROUTES(roles)
+            next({ ...to, replace: true })
+          } else {
+            userStore.RESET_INFO()
+            next('/login')
+          }
         } catch {
           userStore.RESET_INFO()
           next('/login')

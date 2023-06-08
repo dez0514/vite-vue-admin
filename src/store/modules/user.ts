@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia'
-import { getUserInfo } from '@/api/user'
+import { getUserInfo, loginPost } from '@/api/user'
 import { resetRouter } from '@/router'
 import avatar from '@/assets/head.png'
+import { usePermissionStore } from './permission'
 
 export const useUserStore = defineStore({
   id: 'users',
@@ -14,22 +15,51 @@ export const useUserStore = defineStore({
     }
   },
   actions: {
+    // 返回布尔表示 是否登录完成
+    async DO_LOGIN ({username = '', password = ''}) {
+      try {
+        const { code, data }: any = await loginPost({ username, password })
+        if (code === 0) {
+          this.SET_TOKEN(data)
+          const { roles }: any =  await this.GET_USER_INFO()
+          if(roles) {
+            // 处理路由
+            const permissionStore = usePermissionStore()
+            await permissionStore.SET_ROUTES(roles)
+            return true
+          } else {
+            // 获取用户角色信息失败
+            return false
+          }
+        } else {
+          // 获取token失败
+          return false
+        }
+      } catch(err) {
+        console.log(err)
+        return false
+      }
+    },
     SET_TOKEN(token = '') {
-      token ? sessionStorage.getItem('token') : sessionStorage.removeItem('token')
+      token ? sessionStorage.setItem('token', token) : sessionStorage.removeItem('token')
       this.token = token
     },
     async GET_USER_INFO() {
       try {
-        const { code, data }: any = await getUserInfo()
+        // mock 插件监听不到 sessionStorage 的token更新, 暂时手动传一下
+        const { code, data }: any = await getUserInfo({}, { headers: { 'Authorization': this.token }})
         if (code === 0) {
           const { name, avatar, roles } = data
           this.name = name || ''
           this.avatar = avatar
           this.roles = roles || ['editor']
+          sessionStorage.setItem('userInfo', JSON.parse(data))
           return {
             ...data,
             roles: this.roles
           }
+        } else {
+          return null
         }
       } catch (error) {
         return error

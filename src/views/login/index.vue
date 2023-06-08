@@ -5,11 +5,19 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { loginPost } from '@/api/user';
+import { useRouter } from 'vue-router'
+import { useUserStore } from '@/store'
 const username = ref<string>('admin')
-const handleClick = () => {
-  loginPost({ username: username.value }).then(res => {
-    console.log(res)
-  })
+const userStore = useUserStore()
+const router = useRouter()
+const handleClick = async() => {
+  const token = await userStore.DO_LOGIN({ username: username.value, password: '111' })
+  if(token) {
+    const { roles } = await userStore.GET_USER_INFO()
+    // setRoutes
+    if(roles) {
+      router.replace('/')
+    }
+  }
 }
 </script>

@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { defineStore } from 'pinia'
 import { asyncRoutes, constantRoutes, addRoutes } from '@/router'
-// import Layout from '@/layout/index.vue'
+import Layout from '@/layout/index.vue'
 
 /**
  * 使用meta.role来确定当前用户是否有权限
@@ -53,21 +53,20 @@ export const usePermissionStore = defineStore({
           accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
         }
         this.addRoutes = accessedRoutes
-        this.routes = constantRoutes.concat(accessedRoutes)
+        this.routes = [
+          {
+            path: '/',
+            redirect: accessedRoutes[0].path || '/dashboard',
+            component: Layout,
+            children: [
+              ...accessedRoutes
+            ]
+          },
+          ...constantRoutes
+        ]
         console.log('this.routes===', this.routes)
-        // const lastRoutes = [
-        //   {
-        //     path: '/',
-        //     redirect: this.routes[0].path || '/dashboard',
-        //     component: Layout,
-        //     children: [
-        //       ...accessedRoutes
-        //     ]
-        //   },
-        //   ...constantRoutes
-        // ]
-        // addRoutes(this.routes)
-        resolve(accessedRoutes)
+        addRoutes(this.routes)
+        resolve()
       })
     }
   }
