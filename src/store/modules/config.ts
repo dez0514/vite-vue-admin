@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
-import { ConfigState } from '../types/store'
+import { ConfigState } from '../../types/store'
 
-export const configStore = defineStore('config', {
+export const useConfigStore = defineStore('config', {
   state: (): ConfigState => ({
-    isCollapse: false
+    collapse: false
   }),
   getters: {
     getCommonConfig(state: ConfigState): ConfigState {
@@ -11,8 +11,8 @@ export const configStore = defineStore('config', {
     }
   },
   actions: {
-    updateCollapse(payload: boolean) {
-      this.isCollapse = payload
+    SET_COLLAPSE(payload: boolean) {
+      this.collapse = payload
     }
   },
 })

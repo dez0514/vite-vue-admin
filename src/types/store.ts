@@ -10,5 +10,5 @@ export interface State {
 }
 
 export interface ConfigState {
-  isCollapse: boolean;
+  collapse: boolean;
 }

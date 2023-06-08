@@ -1,7 +1,8 @@
 
-import { createRouter, createWebHashHistory, RouteRecordRaw, RouteLocationNormalized, NavigationGuardNext } from 'vue-router';
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import Login from '@/views/login/index.vue'
-import Layout from '@/layout/index.vue'
+import RouterViewBox from '@/components/RouterView.vue';
+import { Aim } from '@element-plus/icons-vue'
 // import { getUserInfo } from '../api/user'
 export const asyncRoutes: Array<RouteRecordRaw> = [
   {
@@ -9,7 +10,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
     name: 'dashboard',
     meta: {
       title: '首页',
-      icon: 'Guide',
+      icon: Aim,
     },
     component: () => import('@/views/home/index.vue')
   },
@@ -17,12 +18,31 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
     path: '/guide',
     meta: {
       title: '引导页',
-      icon: 'Guide'
+      icon: Aim
     },
     component: () => import('@/views/guide/index.vue')
+  },
+  {
+    path: '/permissionTest',
+    meta: {
+      title: '引导页',
+      icon: Aim
+    },
+    redirect: '/permissionTest/intro',
+    component: RouterViewBox,
+    children: [
+      {
+        path: '/permissionTest/intro',
+        meta: {
+          title: '权限说明',
+          icon: Aim
+        },
+        component: () => import('@/views/permissionTest/index.vue')
+      },
+    ]
   }
 ]
-const constantRoutes = [
+export const constantRoutes = [
   {
     path: '/login',
     name: 'login',
@@ -40,51 +60,35 @@ const constantRoutes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: [
-    {
-      path: '/',
-      redirect: asyncRoutes[0].path || '/dashboard',
-      component: Layout,
-      children: [
-        ...asyncRoutes
-      ]
-    },
-    ...constantRoutes
-  ],
+  routes: [...constantRoutes]
 });
-// 登录拦截
-// router.beforeEach(async(
-//   to: RouteLocationNormalized,
-//   _from: RouteLocationNormalized,
-//   next: NavigationGuardNext
-// ) => {
-//   if (typeof (to.meta.title) === 'string') document.title = to.meta.title
-//   const token = localStorage.getItem('token')
-//   if (to.path !== '/login') {
-//     if (!token) {
-//       localStorage.clear()
-//       next('/login')
-//     } else {
-//       const userinfo = localStorage.getItem('userinfo') || ''
-//       if(!userinfo || !(JSON.parse(userinfo) && JSON.parse(userinfo).username)) {
-//         const res: any = await getUserInfo()
-//         if (Number(res.code) === 0) {
-//           localStorage.setItem('userinfo', JSON.stringify(res.data))
-//           next()
-//         } else {
-//           next('/login')
-//         }
-//       } else {
-//         next()
-//       }
-//     }
-//   } else {
-//     if (token) {
-//       next('/')
-//     } else {
-//       next()
-//     }
-//   }
-// })
+
+export function resetRouter() {
+  router.getRoutes().forEach((route: any) => {
+    const { name } = route
+    if (name && !constantRoutes.map(item => item.name).includes(name)) {
+      router.hasRoute(name) && router.removeRoute(name)
+    }
+  })
+}
+
+export function addRoutes(arr: any){
+  arr.forEach((item: any)=>{
+    router.addRoute(item)
+  })
+}
+
+// const lastRoutes = [
+//   {
+//     path: '/',
+//     redirect: asyncRoutes[0].path || '/dashboard',
+//     component: Layout,
+//     children: [
+//       ...asyncRoutes
+//     ]
+//   },
+//   ...constantRoutes
+// ]
+// addRoutes(lastRoutes)
 
 export default router

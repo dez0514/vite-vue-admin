@@ -15,6 +15,9 @@ export default defineConfig({
       '@': resolve('src/')
     },
   },
+  define: {
+    'process.env': {}
+  },
   plugins: [
     vue(),
     createSvgIconsPlugin({

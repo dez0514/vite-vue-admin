@@ -12,38 +12,26 @@ const roles: any = [
   {
     name: 'editor',
     description: '可以看到除户管理页面之外的所有页面'
-  },
-  {
-    name: 'visitor',
-    description: '仅能看到首页、权限测试页面'
   }
 ]
 const tokens: any = {
   admin: "admin-token",
-  editor: "editor-token",
-  visitor: "visitor-token"
+  editor: "editor-token"
 }
 const users: any = {
   "admin-token": {
     id: "admin",
-    role: "admin",
+    roles: ["admin"],
     name: "寒山骚年",
     avatar: avatar,
     description: "拥有系统内所有菜单和路由权限",
   },
   "editor-token": {
     id: "editor",
-    role: "editor",
+    roles: ["editor"],
     name: "编辑员",
     avatar: avatar0,
     description:"可以看到除户管理页面之外的所有页面",
-  },
-  "visitor-token": {
-    id: "visitor",
-    role: "visitor",
-    name: "游客",
-    avatar: avatar1,
-    description:"仅能看到首页、权限测试页面",
   }
 };
 

@@ -1,13 +1,15 @@
 import { App, createApp } from 'vue'
-import './style.css'
-import router from './router'
-import { createPinia } from 'pinia'
-import AppVue from './App.vue'
-import SvgIcon from '@/components/svgIcon.vue'
+import router from '@/router'
+import { registerStore } from '@/store'
+import AppVue from '@/App.vue'
+import SvgIcon from '@/components/SvgIcon.vue'
 import 'virtual:svg-icons-register'
+import '@/styles/reset.scss'
+import '@/styles/global.scss'
+import './permission'
 
 const app: App<Element> = createApp(AppVue)
 app.component('svg-icon', SvgIcon)
-app.use(createPinia())
+registerStore(app)
 app.use(router)
 app.mount('#app')
