@@ -1,6 +1,6 @@
 import router from '@/router'
 import { RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
-import { useUserStore, usePermissionStore } from '@/store'
+import { useUserStore } from '@/store'
 // 登录拦截
 router.beforeEach(async(
   to: RouteLocationNormalized,
@@ -8,7 +8,6 @@ router.beforeEach(async(
   next: NavigationGuardNext
 ) => {
   const userStore = useUserStore()
-  const permissionStore = usePermissionStore()
   if (typeof (to.meta.title) === 'string') document.title = to.meta.title
   const token = sessionStorage.getItem('token')
   if (to.path !== '/login') {
@@ -18,12 +17,14 @@ router.beforeEach(async(
     } else {
       const hasRoles = userStore.roles && userStore.roles.length > 0
       if (hasRoles) {
+        console.log(111)
         next()
       } else {
+        console.log(222)
         try {
-          const { roles } = await userStore.GET_USER_INFO()
+          const { roles }: any = await userStore.GET_USER_INFO()
           if(roles) {
-            await permissionStore.SET_ROUTES(roles)
+            console.log(333, to)
             next({ ...to, replace: true })
           } else {
             userStore.RESET_INFO()

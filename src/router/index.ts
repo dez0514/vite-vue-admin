@@ -3,42 +3,75 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import Login from '@/views/login/index.vue'
 import RouterViewBox from '@/components/RouterView.vue';
 import { Aim } from '@element-plus/icons-vue'
-// import { getUserInfo } from '../api/user'
+import { shallowRef } from 'vue'
 export const asyncRoutes: Array<RouteRecordRaw> = [
   {
     path: '/dashboard',
     name: 'dashboard',
     meta: {
       title: '首页',
-      icon: Aim,
+      elIcon: Aim,
     },
     component: () => import('@/views/home/index.vue')
   },
   {
     path: '/guide',
+    name: 'guide',
     meta: {
       title: '引导页',
-      icon: Aim
+      elIcon: Aim
     },
     component: () => import('@/views/guide/index.vue')
   },
   {
     path: '/permissionTest',
+    name: 'permissionTest',
     meta: {
-      title: '引导页',
-      icon: Aim
+      title: '权限测试',
+      elIcon: Aim
     },
     redirect: '/permissionTest/intro',
-    component: RouterViewBox,
+    component: shallowRef(RouterViewBox),
     children: [
       {
         path: '/permissionTest/intro',
+        name: 'permissionTest.intro',
         meta: {
           title: '权限说明',
-          icon: Aim
+          elIcon: Aim
         },
         component: () => import('@/views/permissionTest/index.vue')
       },
+      {
+        path: '/permissionTest/admin',
+        name: 'permissionTest.admin',
+        meta: {
+          title: '权限admin',
+          elIcon: Aim
+        },
+        component: () => import('@/views/permissionTest/admin.vue')
+      },
+    ]
+  },
+  {
+    path: '/excel',
+    name: 'excel',
+    meta: {
+      title: 'Excel',
+      icon: 'zip'
+    },
+    redirect: '/excel/export',
+    component: shallowRef(RouterViewBox),
+    children: [
+      {
+        path: '/excel/export',
+        name: 'excel.export',
+        meta: {
+          title: 'Excel导出',
+          icon: 'zip'
+        },
+        component: () => import('@/views/excel/export.vue')
+      }
     ]
   }
 ]
@@ -52,7 +85,7 @@ export const constantRoutes = [
     }
   },
   {
-    path: "/:pathMatch(.*)*",
+    path: '/404',
     name: '404',
     component: () => import('@/views/error/404.vue')
   }
@@ -60,10 +93,13 @@ export const constantRoutes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: [...constantRoutes]
+  routes:  [
+    ...constantRoutes
+  ]
 });
-
+console.log('router.getR===', router.getRoutes())
 export function resetRouter() {
+  console.log('router.getRoutes()===', router.getRoutes())
   router.getRoutes().forEach((route: any) => {
     const { name } = route
     if (name && !constantRoutes.map(item => item.name).includes(name)) {
@@ -76,19 +112,7 @@ export function addRoutes(arr: any){
   arr.forEach((item: any)=>{
     router.addRoute(item)
   })
+  console.log('router.get===', router.getRoutes())
 }
-
-// const lastRoutes = [
-//   {
-//     path: '/',
-//     redirect: asyncRoutes[0].path || '/dashboard',
-//     component: Layout,
-//     children: [
-//       ...asyncRoutes
-//     ]
-//   },
-//   ...constantRoutes
-// ]
-// addRoutes(lastRoutes)
 
 export default router

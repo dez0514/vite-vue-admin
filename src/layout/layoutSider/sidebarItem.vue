@@ -1,28 +1,47 @@
 <template>
   <div v-if="!props.item.meta?.hidden">
-    <template v-if="hasOneShowingChild(props.item.children, props.item) &&
-      (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
-      !props.item.meta?.alwaysShow
-      ">
+    <template v-if="hasOneShowingChild(props.item.children, props.item) && (!onlyOneChild.children || onlyOneChild.noShowingChildren) && !props.item.meta?.alwaysShow">
       <AppLink v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{ 'submenu-title-noDropdown': !props.isNest }">
-          <!-- <svg-icon class-name="menu-icons" v-if="onlyOneChild.meta.icon || (props.item.meta && props.item.meta.icon)"
-            :icon-class="onlyOneChild.meta.icon || (props.item.meta && props.item.meta.icon)" /> -->
+          <!-- Custom Icon -->
+          <el-icon v-if="onlyOneChild.meta.icon || (props.item.meta && props.item.meta.icon)">
+            <svg-icon
+              class-name="menu-icons"
+              :icon-class="onlyOneChild.meta.icon || (props.item.meta && props.item.meta.icon)"
+            />
+          </el-icon>
+          <!-- Element Icon -->
+          <el-icon v-if="onlyOneChild.meta.elIcon || (props.item.meta && props.item.meta.elIcon)">
+            <component :is="onlyOneChild.meta.elIcon || (props.item.meta && props.item.meta.elIcon)" />
+          </el-icon>
           <template #title>
             <span> {{ onlyOneChild.meta.title }} </span>
           </template>
         </el-menu-item>
       </AppLink>
     </template>
-
     <el-sub-menu v-else ref="subMenu" popper-class="sub-menu-test" :index="resolvePath(props.item.path)">
       <template #title>
-        <!-- <svg-icon class-name="menu-icons" v-if="props.item.meta && props.item.meta.icon"
-          :icon-class="props.item.meta && props.item.meta.icon" /> -->
+        <!-- Custom Icon -->
+        <svg-icon
+          v-if="props.item.meta && props.item.meta.icon"
+          class-name="menu-icons"
+          :icon-class="props.item.meta && props.item.meta.icon"
+        />
+        <!-- Element Icon -->
+        <el-icon v-if="props.item.meta && props.item.meta.elIcon">
+          <component :is="props.item.meta && props.item.meta.elIcon" />
+        </el-icon>
         <span> {{ props.item.meta.title }} </span>
       </template>
-      <SidebarItem v-for="child in props.item.children" :key="child.path" :is-nest="true" :item="child"
-        :base-path="resolvePath(child.path)" class="nest-menu" />
+      <SidebarItem
+        class="nest-menu"
+        v-for="child in props.item.children"
+        :key="child.path"
+        :is-nest="true"
+        :item="child"
+        :base-path="resolvePath(child.path)"
+      />
     </el-sub-menu>
   </div>
 </template>
@@ -84,3 +103,6 @@ defineOptions({
   name: 'SidebarItem'
 })
 </script>
+<style lang="scss" scoped>
+
+</style>

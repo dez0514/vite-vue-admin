@@ -2,6 +2,7 @@
 import { defineStore } from 'pinia'
 import { asyncRoutes, constantRoutes, addRoutes } from '@/router'
 import Layout from '@/layout/index.vue'
+import { shallowRef } from 'vue'
 
 /**
  * 使用meta.role来确定当前用户是否有权限
@@ -40,7 +41,7 @@ export const usePermissionStore = defineStore({
   state: () => {
     return {
       routes: [],
-      addRoutes: []
+      addRoutesArr: []
     }
   },
   actions: {
@@ -52,14 +53,19 @@ export const usePermissionStore = defineStore({
         } else {
           accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
         }
-        this.addRoutes = accessedRoutes
+        this.addRoutesArr = accessedRoutes
         this.routes = [
           {
             path: '/',
+            name: 'layout',
             redirect: accessedRoutes[0].path || '/dashboard',
-            component: Layout,
+            component: shallowRef(Layout),
             children: [
-              ...accessedRoutes
+              ...accessedRoutes,
+              {
+                path: '/:pathMatch(.*)*',
+                redirect: '/404'
+              }
             ]
           },
           ...constantRoutes

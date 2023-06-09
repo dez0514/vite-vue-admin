@@ -15,55 +15,50 @@ export const useUserStore = defineStore({
     }
   },
   actions: {
-    // 返回布尔表示 是否登录完成
-    async DO_LOGIN ({username = '', password = ''}) {
-      try {
-        const { code, data }: any = await loginPost({ username, password })
-        if (code === 0) {
-          this.SET_TOKEN(data)
-          const { roles }: any =  await this.GET_USER_INFO()
-          if(roles) {
-            // 处理路由
-            const permissionStore = usePermissionStore()
-            await permissionStore.SET_ROUTES(roles)
-            return true
-          } else {
-            // 获取用户角色信息失败
-            return false
-          }
-        } else {
-          // 获取token失败
-          return false
-        }
-      } catch(err) {
-        console.log(err)
-        return false
-      }
-    },
     SET_TOKEN(token = '') {
       token ? sessionStorage.setItem('token', token) : sessionStorage.removeItem('token')
       this.token = token
     },
-    async GET_USER_INFO() {
-      try {
-        // mock 插件监听不到 sessionStorage 的token更新, 暂时手动传一下
-        const { code, data }: any = await getUserInfo({}, { headers: { 'Authorization': this.token }})
-        if (code === 0) {
-          const { name, avatar, roles } = data
-          this.name = name || ''
-          this.avatar = avatar
-          this.roles = roles || ['editor']
-          sessionStorage.setItem('userInfo', JSON.parse(data))
-          return {
-            ...data,
-            roles: this.roles
+    DO_LOGIN ({username = '', password = ''}) {
+      return new Promise(async (resolve: Function, reject: Function) => {
+        try {
+          const { code, data }: any = await loginPost({ username, password })
+          if (code === 0) {
+            this.SET_TOKEN(data)
+            resolve(data)
+          } else {
+            reject(data)
           }
-        } else {
-          return null
+        } catch(err) {
+          reject(err)
         }
-      } catch (error) {
-        return error
-      }
+      })
+    },
+    GET_USER_INFO() {
+      return new Promise(async (resolve: Function, reject: Function) => {
+        try {
+          // mock 插件监听不到 sessionStorage 的token更新, 暂时手动传一下
+          const { code, data }: any = await getUserInfo({}, { headers: { 'Authorization': this.token }})
+          if (code === 0) {
+            const { name, avatar, roles } = data
+            if(roles) { // 账号一定有个基础角色
+              this.name = name || ''
+              this.avatar = avatar
+              sessionStorage.setItem('userInfo', JSON.stringify(data))
+              const permissionStore = usePermissionStore()
+              await permissionStore.SET_ROUTES(roles)
+              this.roles = roles
+              resolve(data)
+            } else {
+              reject(data)
+            }
+          } else {
+            reject(data)
+          }
+        } catch (error) {
+          reject(error)
+        }
+      })
     },
     async LOGIN_OUT() {
       this.token = ''

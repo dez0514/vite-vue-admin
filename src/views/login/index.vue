@@ -13,11 +13,7 @@ const router = useRouter()
 const handleClick = async() => {
   const token = await userStore.DO_LOGIN({ username: username.value, password: '111' })
   if(token) {
-    const { roles } = await userStore.GET_USER_INFO()
-    // setRoutes
-    if(roles) {
-      router.replace('/')
-    }
+    router.push('/')
   }
 }
 </script>

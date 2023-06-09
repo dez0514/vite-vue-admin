@@ -6,11 +6,16 @@
     :default-active="set.activeMenu"
     :collapse="set.isCollapse"
     :unique-opened="true"
-    :collapse-transition="false"
+    :collapse-transition="true"
     mode="vertical"
     class="sidebar-menus"
   >
-    <SidebarItem v-for="item in asyncRoutes" :key="item.path" :item="item" :base-path="item.path" />
+    <SidebarItem
+      v-for="item in asyncRoutes"
+      :key="item.path"
+      :item="item"
+      :base-path="item.path"
+    />
   </el-menu>
 </template>
 
@@ -27,7 +32,7 @@ const configStore = useConfigStore()
 
 const set = reactive({
   isCollapse: computed(() => {
-    return !configStore.collapse
+    return configStore.collapse
   }),
   activeMenu: computed(() => {
     const { meta, path } = route
@@ -41,14 +46,3 @@ const set = reactive({
   // })
 })
 </script>
-
-<style scoped lang="scss">
-.horizontal-logo {
-  width: 210px;
-  display: flex;
-}
-
-/* .scrollbar-wrapper {
-  width: calc(  );
-} */
-</style>

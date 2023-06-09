@@ -1,9 +1,13 @@
 <template>
-  <el-container style="height: 500px">
-    <vsider />
-    <el-container>
-      <vheader />
-      <el-main>
+  <el-container>
+    <el-aside width="200px">
+      <vsider />
+    </el-aside>
+    <el-container style="height: 100vh">
+      <el-header class="header-container" height="50px">
+        <vheader />
+      </el-header>
+      <el-main style="padding: 0;">
         <el-scrollbar>
           <router-view />
         </el-scrollbar>
@@ -16,6 +20,10 @@ import vsider from './layoutSider/index.vue'
 import vheader from './layoutHeader/index.vue'
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.header-container {
+  padding-left: 0;
+  font-size: 12px;
+  background: pink;
+}
 </style>

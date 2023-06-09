@@ -1,5 +1,5 @@
 <template>
-  <svg aria-hidden="true" class="svg-icon">
+  <svg aria-hidden="true" :class="['svg-icon', className]">
     <use :xlink:href="symbolId" :fill="color" />
   </svg>
 </template>
@@ -8,11 +8,12 @@
 import { computed, toRefs } from 'vue';
 
 const props = defineProps({
+  className: { type: String, default: '' },
   prefix: { type: String, default: 'icon' },
   iconClass: { type: String, required: true },
   color: { type: String, default: '' }
 })
-const { prefix, iconClass, color } = toRefs(props)
+const { prefix, iconClass, color, className } = toRefs(props)
 const symbolId = computed(() => `#${prefix.value}-${iconClass.value}`);
 </script>
 
