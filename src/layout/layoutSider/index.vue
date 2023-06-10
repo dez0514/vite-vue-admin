@@ -1,6 +1,6 @@
 <template>
-  <div class="sider-wrapper">
-    <Logo />
+  <div :class="['sider-wrapper', set.isCollapse ? 'collapse-sider' : '']">
+    <Logo :is-collpase="set.isCollapse" />
     <div style="height: calc(100vh - 50px)">
       <el-scrollbar>
         <Menu />
@@ -10,29 +10,37 @@
 </template>
 
 <script lang="ts" setup>
-// import { computed, reactive } from 'vue'
-// import { useConfigStore } from '../../store'
+import { computed, reactive } from 'vue'
 import Logo from '../Logo/index.vue'
 import Menu from './menu.vue'
+import { useConfigStore } from '@/store'
 
-// const configStore = useConfigStore()
+const configStore = useConfigStore()
 
-// const set = reactive({
-//   isCollapse: computed(() => {
-//     return !configStore.collapse
-//   })
-// })
+const set = reactive({
+  isCollapse: computed(() => {
+    return configStore.collapse
+  })
+})
 </script>
 
 <style lang="scss" scoped>
 .sider-wrapper {
+  // 宽度给容器，为了让 整个侧边栏动画同步
   height: 100vh;
+  width: 210px;
+  transition: width 0.28s;
+  &.collapse-sider {
+    width: 64px;
+  }
 }
 .sidebar-menus {
   min-height: calc(100vh - 50px);
+  border: 0;
 }
 
 .sider-wrapper :deep(.sidebar-menus.el-menu--vertical) {
+  width: 100%; // 必须要
   .el-sub-menu {
     overflow: hidden;
   }

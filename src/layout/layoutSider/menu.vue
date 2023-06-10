@@ -6,7 +6,7 @@
     :default-active="set.activeMenu"
     :collapse="set.isCollapse"
     :unique-opened="true"
-    :collapse-transition="true"
+    :collapse-transition="false"
     mode="vertical"
     class="sidebar-menus"
   >
