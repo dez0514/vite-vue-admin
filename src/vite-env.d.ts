@@ -15,3 +15,8 @@ declare module '*.jpeg'
 declare module '*.gif'
 declare module '*.bmp'
 declare module '*.tiff'
+
+
+declare module 'element-plus/dist/locale/zh-cn.mjs'
+declare module 'element-plus/dist/locale/en.mjs'
+declare module 'element-plus'

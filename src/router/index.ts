@@ -10,7 +10,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
     name: 'dashboard',
     meta: {
       title: '首页',
-      elIcon: Aim,
+      elIcon: shallowRef(Aim),
     },
     component: () => import('@/views/home/index.vue')
   },
@@ -19,7 +19,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
     name: 'guide',
     meta: {
       title: '引导页',
-      elIcon: Aim
+      elIcon: shallowRef(Aim)
     },
     component: () => import('@/views/guide/index.vue')
   },
@@ -38,7 +38,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         name: 'permissionTest.intro',
         meta: {
           title: '权限说明',
-          elIcon: Aim
+          elIcon: shallowRef(Aim)
         },
         component: () => import('@/views/permissionTest/index.vue')
       },
@@ -47,7 +47,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         name: 'permissionTest.admin',
         meta: {
           title: '权限admin',
-          elIcon: Aim
+          elIcon: shallowRef(Aim)
         },
         component: () => import('@/views/permissionTest/admin.vue')
       },

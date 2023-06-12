@@ -30,6 +30,9 @@ const props = defineProps({
   width: 100%;
   height: 50px;
   background: #2b2f3a;
+  a, a:active {
+    text-decoration: none!important;
+  }
   .logo-link {
     box-sizing: border-box;
     width: 100%;

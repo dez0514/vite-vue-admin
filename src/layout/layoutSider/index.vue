@@ -41,8 +41,16 @@ const set = reactive({
 
 .sider-wrapper :deep(.sidebar-menus.el-menu--vertical) {
   width: 100%; // 必须要
+  a, a:active {
+    text-decoration: none!important;
+  }
   .el-sub-menu {
     overflow: hidden;
+    .el-sub-menu__title {
+      &:hover {
+        background-color:  var(--el-menu-hover-bg-color)!important;
+      }
+    }
   }
   .svg-icon {
     margin-right: 5px;

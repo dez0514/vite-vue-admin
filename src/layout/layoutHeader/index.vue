@@ -8,25 +8,20 @@
         </el-icon>
       </div>
     </div>
-    <div>
-      <el-dropdown>
-        <el-icon style="margin-right: 8px; margin-top: 1px">
-          <setting />
-        </el-icon>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item>View</el-dropdown-item>
-            <el-dropdown-item>Add</el-dropdown-item>
-            <el-dropdown-item>Delete</el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
-      <span>Tom</span>
+    <div class="header-right">
+      <fullscreen />
+      <switchLanguage />
+      <userAvatar />
+      <setTrigger />
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-import { Expand, Fold, Setting } from '@element-plus/icons-vue'
+import fullscreen from '../fullscreen/index.vue'
+import switchLanguage from '../switchLanguage/index.vue'
+import setTrigger from '../setting/trigger.vue'
+import userAvatar from '../userAvatar/index.vue'
+import { Expand, Fold } from '@element-plus/icons-vue'
 import { useConfigStore } from '@/store'
 import { computed, reactive } from 'vue';
 const configStore = useConfigStore()
@@ -45,6 +40,8 @@ const handleTriggerCollapse = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: #fff;
+  box-shadow: 0 1px 4px #00152914;
 }
 .collapse-trigger {
   display: flex;
@@ -57,5 +54,10 @@ const handleTriggerCollapse = () => {
   &:hover {
     background: rgba(0,0,0,0.06);
   }
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
 }
 </style>

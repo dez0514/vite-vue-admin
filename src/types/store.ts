@@ -11,4 +11,5 @@ export interface State {
 
 export interface ConfigState {
   collapse: boolean;
+  isShowRightDraw: boolean
 }
