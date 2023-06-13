@@ -12,8 +12,8 @@
           <router-view />
         </el-scrollbar>
       </el-main>
-      <el-drawer v-model="set.isShowDraw" title="I am the title">
-        <span>Hi there!</span>
+      <el-drawer v-model="isShowDraw" title="系统设置">
+        <div>Hi there!</div>
       </el-drawer>
     </el-container>
   </el-container>
@@ -22,10 +22,15 @@
 import vsider from './layoutSider/index.vue'
 import vheader from './layoutHeader/index.vue'
 import { useConfigStore } from '@/store/index'
-import { computed, reactive } from 'vue';
+import { computed } from 'vue';
 const configStore = useConfigStore()
-const set = reactive({
-  isShowDraw: computed(() => configStore.isShowRightDraw)
+const isShowDraw = computed({
+  get() {
+    return configStore.isShowRightDraw
+  },
+  set(v:boolean) {
+    configStore.SET_DRAW_ISSHOW(v)
+  }
 })
 </script>
 
