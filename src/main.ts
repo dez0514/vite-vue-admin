@@ -7,7 +7,6 @@ import 'virtual:svg-icons-register'
 import '@/styles/reset.scss'
 import '@/styles/global.scss'
 import './permission'
-import '@/mock/index'
 
 const app: App<Element> = createApp(AppVue)
 app.component('svg-icon', SvgIcon)

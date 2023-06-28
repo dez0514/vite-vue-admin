@@ -25,7 +25,6 @@ import { parse, compile } from 'path-to-regexp';
 const CancelToken = axios.CancelToken
 const CONTENT_TYPE = {
   json: 'application/json;charset=utf-8',
-  xwform: 'application/x-www-form-urlencoded',
   mpform: 'multipart/form-data' // 通常上传用这个
 }
 const defaultConfig = {
@@ -87,10 +86,6 @@ function changeLoadingState(config: any, toState: boolean) {
 }
 // config
 function compileConfig(config: any) {
-  // 默认修改post的Content-Type
-  if(config.method === 'post') { // post默认
-    config.headers['Content-Type'] = CONTENT_TYPE.xwform
-  }
   const { headers, ...defaultRest } = defaultConfig
   let { headers: newHeaders, ...rest } = config
   if(!newHeaders) newHeaders = {};

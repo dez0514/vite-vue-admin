@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
+    "build:staging": "vue-tsc && vite build --mode staging",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -22,6 +23,7 @@
     "qs": "^6.11.2",
     "sass": "^1.62.1",
     "screenfull": "^6.0.2",
+    "vite-plugin-mock": "^2.9.8",
     "vite-plugin-svg-icons": "^2.0.1",
     "vue": "^3.2.47",
     "vue-router": "^4.2.2"

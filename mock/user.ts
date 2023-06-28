@@ -1,8 +1,6 @@
 import qs from 'qs'
-import avatar from '@/assets/head.png'
-import avatar0 from '@/assets/avatar/0.jpg'
-import avatar1 from '@/assets/avatar/1.jpg'
-// import Mock from 'mockjs'
+import { MockMethod } from 'vite-plugin-mock';
+import Mock from 'mockjs'
 // const roles: string[] = ['admin', 'editor', 'visitor']
 const roles: any = [
   {
@@ -23,81 +21,78 @@ const users: any = {
     id: "admin",
     roles: ["admin"],
     name: "寒山骚年",
-    avatar: avatar,
+    avatar: Mock.Random.image('250x250', '#1890ff', '#fff', 'png', 'admin'),
     description: "拥有系统内所有菜单和路由权限",
   },
   "editor-token": {
     id: "editor",
     roles: ["editor"],
     name: "编辑员",
-    avatar: avatar0,
+    avatar: Mock.Random.image('250x250', '#1890ff', '#fff', 'png', 'editor'),
     description:"可以看到除户管理页面之外的所有页面",
   }
 };
 
-export const login = (config: any) => {
-  // console.log('config===', config)
-  const { data } = config; // 获取前端传递的数据
-  // console.log('data===',data);
-  const { username } = qs.parse(data)
+const login = (config: any) => {
+  const { body } = config; // 获取前端传递的数据
+  const { username } = body
   if(!username || !Object.keys(tokens).includes(username as string)){
     const err = {
       code: 1,
       message: 'error.username.password.wrong'
     }
-    return [200, err]
+    return err
   }
   const response = {
     code: 0,
     message: 'success',
     data: tokens[username as string]
   }
-  return [200, response];
+  return response
 }
 
-export const userInfo = (config: any) => {
-  // console.log('get==config===', config)
+const userInfo = (config: any) => {
+  console.log('get==config===', config)
   const { headers } = config; // 获取请求头信息
   // console.log('headers===',headers); // 打印请求头信息
-  const token: string = headers.Authorization || '';
+  const token: string = headers.authorization || '';
   if(!token || !Object.keys(users).includes(token)) {
     const err = {
       code: 1,
       message: "error.getuserinfo",
     };
-    return [200, err]
+    return err
   }
   const response = {
     code: 0,
     message: 'success',
     data: users[token as string]
   }
-  return [200, response]
+  return response
 }
 
-export const getUserList = () => {
+const getUserList = () => {
   const arr = Object.values(users)
   const response = {
     code: 0,
     message: 'success',
     data: arr
   }
-  return [200, response]
+  return response
 }
 
-export const getRoleList = () => {
+const getRoleList = () => {
   const response = {
     code: 0,
     message: 'success',
     data: roles
   }
-  return [200, response]
+  return response
 }
 
-export const addUser = (config: any) => {
-  const { data } = config;
-  console.log('data===',data);
-  const { id, name, role, description } = qs.parse(data)
+const addUser = (config: any) => {
+  const { body } = config;
+  const { id, name, role, description } = body
   const userArr = Object.values(users)
   const fitem = userArr.find((item: any) => item.id === id)
   if(!fitem) { // 新增
@@ -105,7 +100,7 @@ export const addUser = (config: any) => {
       id: id,
       role: role,
       name: name,
-      avatar: avatar1,
+      avatar: Mock.Random.image('250x250', '#1890ff', '#fff', 'png', role as string),
       description: description
     }
     const token = `${id}-token`
@@ -115,19 +110,19 @@ export const addUser = (config: any) => {
       code: 0,
       message: 'success'
     }
-    return [200, response]
+    return response
   } else {
     const response = {
       code: 1,
       message: 'error'
     }
-    return [200, response]
+    return response
   }
 }
 
-export const editUser = (config: any) => {
-  const { data } = config;
-  const { id, name, role, description } = qs.parse(data)
+const editUser = (config: any) => {
+  const { body } = config;
+  const { id, name, role, description } = body
   const userArr = Object.values(users)
   const fitem = userArr.find((item: any) => item.id === id)
   if(fitem) {
@@ -137,45 +132,45 @@ export const editUser = (config: any) => {
       id: id,
       role: role,
       name: name,
-      avatar: avatar1,
+      avatar: Mock.Random.image('250x250', '#1890ff', '#fff', 'png', role as string),
       description: description
     }
     const response = {
       code: 0,
       message: 'success'
     }
-    return [200, response]
+    return response
   } else {
     const response = {
       code: 1,
       message: 'error'
     }
-    return [200, response]
+    return response
   }
 }
 
-export const deleteUser = (config: any) => {
-  const { data } = config;
-  const { id } = qs.parse(data)
+const deleteUser = (config: any) => {
+  const { body } = config;
+  const { id } = body
   delete users[`${id}-token`]
   delete tokens[id as string]
   const response = {
     code: 0,
     message: 'success'
   }
-  return [200, response]
+  return response
 }
 
-export const addRole = (config: any) => {
-  const { data } = config;
-  const { name, description } = qs.parse(data)
+const addRole = (config: any) => {
+  const { body } = config;
+  const { name, description } = body
   const roleArr = roles.map((item: any) => item.name)
   if(roleArr.includes(name as string)) {
     const response = {
       code: 1,
       message: '角色已存在'
     }
-    return [200, response]
+    return response
   }
   roles.push({ name, description })
   // 修改权限
@@ -183,19 +178,19 @@ export const addRole = (config: any) => {
     code: 0,
     message: 'success'
   }
-  return [200, response]
+  return response
 }
 
-export const editRole = (config: any) => {
-  const { data } = config;
-  const { name, description } = qs.parse(data)
+const editRole = (config: any) => {
+  const { body } = config;
+  const { name, description } = body
   const i = roles.findIndex((item: any) => item.name === name)
   if(i === -1) {
     const response = {
       code: 1,
       message: '角色不存在'
     }
-    return [200, response]
+    return response
   }
   roles[i].description = description as string
   // 修改权限
@@ -203,19 +198,19 @@ export const editRole = (config: any) => {
     code: 0,
     message: 'success'
   }
-  return [200, response]
+  return response
 }
 
-export const deleteRole = (config: any) => {
-  const { data } = config;
-  const { name } = qs.parse(data)
+const deleteRole = (config: any) => {
+  const { body } = config;
+  const { name } = body
   const i = roles.findIndex((item: any) => item.name === name)
   if(i === -1) {
     const response = {
       code: 1,
       message: '角色不存在'
     }
-    return [200, response]
+    return response
   }
   roles.splice(i, 1)
   // 删除该角色的权限数据
@@ -224,5 +219,98 @@ export const deleteRole = (config: any) => {
     code: 0,
     message: 'success'
   }
-  return [200, response]
+  return response
 }
+
+export default [
+  {
+    url: '/api/login',
+    timeout: 1000,
+    method: 'post',
+    response: (request) => {
+      const response = login(request)
+      return response
+    }
+  },
+  {
+    url: '/api/userinfo',
+    timeout: 1000,
+    method: 'get',
+    response: (request) => {
+      const response = userInfo(request)
+      return response
+    }
+  },
+  {
+    url: '/api/getuserList',
+    timeout: 1000,
+    method: 'get',
+    response: () => {
+      const response = getUserList()
+      return response
+    }
+  },
+  {
+    url: '/api/getRoleList',
+    timeout: 1000,
+    method: 'get',
+    response: () => {
+      const response = getRoleList()
+      return response
+    }
+  },
+  {
+    url: '/api/addUser',
+    timeout: 1000,
+    method: 'post',
+    response: (request) => {
+      const response = addUser(request)
+      return response
+    }
+  },
+  {
+    url: '/api/editUser',
+    timeout: 1000,
+    method: 'post',
+    response: (request) => {
+      const response = editUser(request)
+      return response
+    }
+  },
+  {
+    url: '/api/deleteUser',
+    timeout: 1000,
+    method: 'post',
+    response: (request) => {
+      const response = deleteUser(request)
+      return response
+    }
+  },
+  {
+    url: '/api/addRole',
+    timeout: 1000,
+    method: 'post',
+    response: (request) => {
+      const response = addRole(request)
+      return response
+    }
+  },
+  {
+    url: '/api/editRole',
+    timeout: 1000,
+    method: 'post',
+    response: (request) => {
+      const response = editRole(request)
+      return response
+    }
+  },
+  {
+    url: '/api/deleteRole',
+    timeout: 1000,
+    method: 'post',
+    response: (request) => {
+      const response = deleteRole(request)
+      return response
+    }
+  }
+] as MockMethod[];

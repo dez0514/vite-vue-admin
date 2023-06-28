@@ -2,7 +2,7 @@
   <el-dropdown trigger="click">
     <div class="user-wrapper">
       <el-avatar :src="avatar" />
-      <div class="username">hanshanshaonian</div>
+      <div class="username">{{ name }}</div>
     </div>
     <template #dropdown>
       <el-dropdown-menu>
@@ -18,8 +18,11 @@
   </el-dropdown>
 </template>
 <script lang="ts" setup>
-import avatar from '@/assets/head.png'
 import { SwitchButton } from '@element-plus/icons-vue'
+import { useUserStore } from '@/store/index'
+const userStore = useUserStore()
+const { avatar, name } = userStore
+
 </script>
 <style lang="scss" scoped>
 .user-wrapper {

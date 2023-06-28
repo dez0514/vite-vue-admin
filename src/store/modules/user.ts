@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import { getUserInfo, loginPost } from '@/api/user'
 import { resetRouter } from '@/router'
-import avatar from '@/assets/head.png'
 import { usePermissionStore } from './permission'
 
 export const useUserStore = defineStore({
@@ -9,7 +8,7 @@ export const useUserStore = defineStore({
   state: () => {
     return {
       token: sessionStorage.getItem('token') || '',
-      avatar: avatar,
+      avatar: '',
       name: 'hanshansaonian',
       roles: []
     }
