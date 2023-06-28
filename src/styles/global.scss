@@ -21,6 +21,11 @@
   background-color: rgba(0,0,0,.05);
 }
 
+// nprogress 样式重置
+#nprogress .spinner {
+  top: 60px!important;
+}
+
 //  路由动画
 .fade-enter {
   opacity: 0;

@@ -1,12 +1,16 @@
 import router from '@/router'
 import { RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
 import { useUserStore } from '@/store'
+import NProgress from 'nprogress';
+import "nprogress/nprogress.css"; 
+
 // 登录拦截
 router.beforeEach(async(
   to: RouteLocationNormalized,
   _from: RouteLocationNormalized,
   next: NavigationGuardNext
 ) => {
+  NProgress.start()
   const userStore = useUserStore()
   if (typeof (to.meta.title) === 'string') document.title = to.meta.title
   const token = sessionStorage.getItem('token')
@@ -45,6 +49,6 @@ router.beforeEach(async(
   }
 })
 
-// router.afterEach(() => {
-//   NProgress.done()
-// })
+router.afterEach(() => {
+  NProgress.done()
+})
