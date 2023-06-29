@@ -91,10 +91,10 @@ function compileConfig(config: any) {
   if(!newHeaders) newHeaders = {};
   config = { ...defaultRest, ...rest, headers: { ...headers, ...newHeaders }}
   // get,set token...
-  // const token = sessionStorage.getItem(StorageKeys.TOKEN)
-  // if(token) {
-  //   config.headers.Authorization = token; // 坑：axios-mock-adapter 监听不到更新
-  // }
+  const token = sessionStorage.getItem('token')
+  if(token) {
+    config.headers.Authorization = token;
+  }
   // 处理restful方式的url, 形如 '/article/:id'
 	const data = ['get', 'delete', 'head'].includes(config.method) ? config.params : config.data;
   const parseData = parse(config.url);
@@ -104,6 +104,7 @@ function compileConfig(config: any) {
 			delete data[item.name];
 		}
 	});
+  return config
 }
 
 function handleError(data: any) {
@@ -134,7 +135,7 @@ service.interceptors.request.use(
   (config: any) => {
     isAbortRequest(config)
     changeLoadingState(config, true)
-    compileConfig(config)
+    config = compileConfig(config)
     return config
   },
   error => {

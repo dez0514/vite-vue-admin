@@ -37,7 +37,7 @@ export const useUserStore = defineStore({
       return new Promise(async (resolve: Function, reject: Function) => {
         try {
           // mock 插件监听不到 sessionStorage 的token更新, 暂时手动传一下
-          const { code, data }: any = await getUserInfo({}, { headers: { 'Authorization': this.token }})
+          const { code, data }: any = await getUserInfo()
           if (code === 0) {
             const { name, avatar, roles } = data
             if(roles) { // 账号一定有个基础角色

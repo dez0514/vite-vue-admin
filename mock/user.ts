@@ -1,7 +1,5 @@
-import qs from 'qs'
 import { MockMethod } from 'vite-plugin-mock';
 import Mock from 'mockjs'
-// const roles: string[] = ['admin', 'editor', 'visitor']
 const roles: any = [
   {
     name: 'admin',
@@ -52,7 +50,7 @@ const login = (config: any) => {
 }
 
 const userInfo = (config: any) => {
-  console.log('get==config===', config)
+  // console.log('get==config===', config)
   const { headers } = config; // 获取请求头信息
   // console.log('headers===',headers); // 打印请求头信息
   const token: string = headers.authorization || '';

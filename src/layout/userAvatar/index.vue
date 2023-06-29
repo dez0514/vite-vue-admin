@@ -12,7 +12,7 @@
             Github
           </el-dropdown-item>
         </a>
-        <el-dropdown-item divided :icon="SwitchButton">退出登录</el-dropdown-item>
+        <el-dropdown-item divided :icon="SwitchButton" @click="handleLogout">退出登录</el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </el-dropdown>
@@ -22,7 +22,10 @@ import { SwitchButton } from '@element-plus/icons-vue'
 import { useUserStore } from '@/store/index'
 const userStore = useUserStore()
 const { avatar, name } = userStore
-
+const handleLogout = async () => {
+  await userStore.RESET_INFO()
+  location.reload()
+}
 </script>
 <style lang="scss" scoped>
 .user-wrapper {
