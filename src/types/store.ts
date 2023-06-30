@@ -9,7 +9,11 @@ export interface State {
   }
 }
 
+export type TypeLang = 'zh' | 'en'
+
 export interface ConfigState {
-  collapse: boolean;
-  isShowRightDraw: boolean
+  language?: TypeLang
+  collapse?: boolean;
+  isShowRightDraw?: boolean
+  [key: string]: any
 }

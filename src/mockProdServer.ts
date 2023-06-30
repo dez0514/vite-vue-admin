@@ -1,15 +1,15 @@
 import { createProdMockServer } from 'vite-plugin-mock/es/createProdMockServer'
-import userMock from '../mock/user'
-import homeMock from '../mock/home'
-// export const mockModules = [...userMock, ...homeMock]
-// const modules = import.meta.glob('../mock/*.ts');
-// console.log('modules==', modules)
-// const mockModules: any[] = [];
-// Object.keys(modules).forEach((key) => {
-//   console.log('key==', key)
-//   mockModules.push(...modules[key].default);
-// });
+// import userMock from '../mock/user'
+// import homeMock from '../mock/home'
+
+let mockModules: any = []
+const modulesMockFiles = import.meta.glob('../mock/*.ts') as Record<string, () => Promise<any>>;
+for (const path in modulesMockFiles) {
+  const moduleDefaultExport = await modulesMockFiles[path]()
+  mockModules.push(moduleDefaultExport.default)
+}
+
 export async function setupProdMockServer(): Promise<void> {
-  const mockModules = [...userMock, ...homeMock]
-  createProdMockServer(mockModules)
+  const mockModulesData = [...mockModules]
+  createProdMockServer(mockModulesData)
 }

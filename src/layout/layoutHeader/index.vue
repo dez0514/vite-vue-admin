@@ -22,8 +22,8 @@ import switchLanguage from '../switchLanguage/index.vue'
 import setTrigger from '../setting/trigger.vue'
 import userAvatar from '../userAvatar/index.vue'
 import { Expand, Fold } from '@element-plus/icons-vue'
-import { useConfigStore } from '@/store'
 import { computed, reactive } from 'vue';
+import { useConfigStore } from '@/store'
 const configStore = useConfigStore()
 const set = reactive({
   isCollapse: computed(() => {
@@ -31,7 +31,8 @@ const set = reactive({
   })
 })
 const handleTriggerCollapse = () => {
-  configStore.SET_COLLAPSE(!set.isCollapse)
+  // configStore.SET_COLLAPSE(!set.isCollapse)
+  configStore.SET_CONFIG({ collapse: !set.isCollapse })
 }
 </script>
 <style lang="scss" scoped>

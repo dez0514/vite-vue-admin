@@ -1,26 +1,43 @@
 <template>
-  <el-dropdown trigger="click">
+  <el-dropdown class="lang-switch" trigger="click">
     <div class="lang-trigger">
       <svg-icon icon-class="lang" />
     </div>
     <template #dropdown>
       <el-dropdown-menu>
-        <el-dropdown-item v-for="item in langMenu" :key="item.key">{{ item.label }}</el-dropdown-item>
+        <el-dropdown-item
+          v-for="item in langMenu"
+          :key="item.key"
+          :class="language === item.key ? 'active-lang' : ''"
+          @click="handleChangeLanguage(item.key)"
+        >
+          {{ item.label }}
+        </el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </el-dropdown>
 </template>
 <script lang="ts" setup>
-const langMenu = [
-  {
-    key: 'zh',
-    label: '简体中文'
-  },
-  {
-    key: 'en',
-    label: 'English'
-  }
+import { computed } from 'vue'
+import { useConfigStore } from '@/store'
+import { TypeLang } from '@/types/store';
+import { setI18nLanguage } from '@/locale';
+type LangMenuType = {
+  key: TypeLang,
+  label: string
+}
+const configStore = useConfigStore()
+const language = computed(() => {
+  return configStore.language
+})
+const langMenu: LangMenuType[] = [
+  { key: 'zh', label: '简体中文' },
+  { key: 'en', label: 'English' }
 ]
+const handleChangeLanguage = (t: TypeLang) => {
+  configStore.SET_CONFIG({ language: t })
+  setI18nLanguage(t)
+}
 </script>
 <style lang="scss" scoped>
 .lang-trigger {
@@ -33,5 +50,9 @@ const langMenu = [
   &:hover {
     background: rgba(0,0,0,0.06);
   }
+}
+:deep(.active-lang) {
+  background-color: var(--el-dropdown-menuItem-hover-fill);
+  color: var(--el-dropdown-menuItem-hover-color);
 }
 </style>

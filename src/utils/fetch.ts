@@ -3,7 +3,7 @@ import axios from 'axios'
 import { baseApiUrl } from './getUrls'
 import { parse, compile } from 'path-to-regexp';
 // import { notification } from 'antd';
-// import { StorageKeys } from '@/types/enum';
+import { StorageKeys } from '@/types/enum';
 
 /**
  * config 参数配置:
@@ -91,7 +91,7 @@ function compileConfig(config: any) {
   if(!newHeaders) newHeaders = {};
   config = { ...defaultRest, ...rest, headers: { ...headers, ...newHeaders }}
   // get,set token...
-  const token = sessionStorage.getItem('token')
+  const token = sessionStorage.getItem(StorageKeys.TOKEN)
   if(token) {
     config.headers.Authorization = token;
   }
