@@ -1,5 +1,7 @@
 import { App } from 'vue'
-import { createI18n, I18n } from 'vue-i18n'
+import type { WritableComputedRef } from 'vue';
+import { createI18n } from 'vue-i18n'
+import type { I18n } from 'vue-i18n'
 import messages from './getMessage'
 import defaultSetting from '@/defaultSetting'
 import { StorageKeys } from '@/types/enum'
@@ -24,6 +26,6 @@ export function setI18nLanguage(localeType: TypeLang) {
   if (i18n.mode === 'legacy') {
     i18n.global.locale = localeType
   } else {
-    i18n.global.locale.value = localeType
+    (i18n.global.locale  as WritableComputedRef<string>).value = localeType
   }
 }

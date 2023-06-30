@@ -1,18 +1,34 @@
 # Vue 3 + TypeScript + Vite
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+### ts开发过程类型会让我很烦。。
+1. as 断言
+2. 框架里面的 type, interface
+3. tsconfig.json 配置
+3. vite-env.d.ts 配置
 
-## Recommended IDE Setup
+### element plus 按需引入
+[参考按需引入](https://element-plus.gitee.io/zh-CN/guide/quickstart.html#%E6%8C%89%E9%9C%80%E5%AF%BC%E5%85%A5)
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+### note
+1. `element plus`按需引入时，使用`Elmessage`这类组件时，不需要`import`，直接使用即可，
+`import`反而会导致message没有样式！！！
+2. `vite-plugin-mock@3.0.0` 包有问题，会导致报错，降到2.9.8，使用@2.x的配置项。
+3. `app.config.globalProperties` 使用 `getCurrentInstance` 获取
+```js
+// main.ts mount before
+app.config.globalProperties.$http = xxx
+// in vue setup
+const { proxy } = getCurrentInstance();
+// 使用： proxy.$http
+// ts 配置 vite-env.d.ts
+declare module '*.vue' {
+  interface ComponentCustomProperties {
+    $http: any  // app.config.globalProperties 上的自定义属性加在这
+  }
+  import { DefineComponent } from 'vue'
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types
+  const component: DefineComponent<{}, {}, any>
+  export default component
+}
+```
 
-## Type Support For `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.

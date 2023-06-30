@@ -5,6 +5,7 @@ import AppVue from '@/App.vue'
 import { setupI18n } from '@/locale'
 import SvgIcon from '@/components/SvgIcon.vue'
 import 'virtual:svg-icons-register'
+// import { ElMessage } from 'element-plus'
 import '@/styles/reset.scss'
 import '@/styles/global.scss'
 import './permission'
@@ -16,3 +17,7 @@ app.use(router)
 await router.isReady()
 setupI18n(app)
 app.mount('#app')
+
+
+// app.config.globalProperties.$message = ElMessage
+
