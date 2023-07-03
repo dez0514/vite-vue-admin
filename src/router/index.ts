@@ -2,15 +2,16 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import Login from '@/views/login/index.vue'
 import RouterViewBox from '@/components/RouterView.vue';
-import { Aim } from '@element-plus/icons-vue'
+import { House, Guide, SetUp, Document, User } from '@element-plus/icons-vue'
 import { shallowRef } from 'vue'
+
 export const asyncRoutes: Array<RouteRecordRaw> = [
   {
     path: '/dashboard',
     name: 'dashboard',
     meta: {
-      title: '首页',
-      elIcon: shallowRef(Aim),
+      title: 'menu.home',
+      elIcon: shallowRef(House),
     },
     component: () => import('@/views/home/index.vue')
   },
@@ -18,8 +19,8 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
     path: '/guide',
     name: 'guide',
     meta: {
-      title: '引导页',
-      elIcon: shallowRef(Aim)
+      title: 'menu.guide',
+      elIcon: shallowRef(Guide)
     },
     component: () => import('@/views/guide/index.vue')
   },
@@ -27,8 +28,8 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
     path: '/permissionTest',
     name: 'permissionTest',
     meta: {
-      title: '权限测试',
-      elIcon: Aim
+      title: 'menu.testPermission',
+      elIcon: SetUp
     },
     redirect: '/permissionTest/intro',
     component: shallowRef(RouterViewBox),
@@ -37,8 +38,8 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         path: '/permissionTest/intro',
         name: 'permissionTest.intro',
         meta: {
-          title: '权限说明',
-          elIcon: shallowRef(Aim)
+          title: 'menu.testPermissionIntro',
+          elIcon: shallowRef(Document)
         },
         component: () => import('@/views/permissionTest/index.vue')
       },
@@ -46,8 +47,8 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         path: '/permissionTest/admin',
         name: 'permissionTest.admin',
         meta: {
-          title: '权限admin',
-          elIcon: shallowRef(Aim)
+          title: 'menu.testPermissionAdmin',
+          elIcon: shallowRef(User)
         },
         component: () => import('@/views/permissionTest/admin.vue')
       },
@@ -57,7 +58,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
     path: '/excel',
     name: 'excel',
     meta: {
-      title: 'Excel',
+      title: 'menu.excel',
       icon: 'zip'
     },
     redirect: '/excel/export',
@@ -67,7 +68,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         path: '/excel/export',
         name: 'excel.export',
         meta: {
-          title: 'Excel导出',
+          title: 'menu.export',
           icon: 'zip'
         },
         component: () => import('@/views/excel/export.vue')

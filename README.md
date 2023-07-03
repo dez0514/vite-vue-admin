@@ -4,14 +4,14 @@
 1. as 断言
 2. 框架里面的 type, interface
 3. tsconfig.json 配置
-3. vite-env.d.ts 配置
+4. vite-env.d.ts 配置
 
 ### element plus 按需引入
 [参考按需引入](https://element-plus.gitee.io/zh-CN/guide/quickstart.html#%E6%8C%89%E9%9C%80%E5%AF%BC%E5%85%A5)
 
 ### note
-1. `element plus`按需引入时，使用`Elmessage`这类组件时，不需要`import`，直接使用即可，
-`import`反而会导致message没有样式！！！
+1. `element plus`按需引入时，`tsconfig.json`里的`include`里加上`auto-imports.d.ts`，
+使用`Elmessage`这类组件时，不需要`import`，直接使用即可，`import`反而会导致message没有样式！！！
 2. `vite-plugin-mock@3.0.0` 包有问题，会导致报错，降到2.9.8，使用@2.x的配置项。
 3. `app.config.globalProperties` 使用 `getCurrentInstance` 获取
 ```js

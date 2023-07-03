@@ -15,7 +15,7 @@
             <component :is="onlyOneChild.meta.elIcon || (props.item.meta && props.item.meta.elIcon)" />
           </el-icon>
           <template #title>
-            <span> {{ onlyOneChild.meta.title }} </span>
+            <span> {{ $t(onlyOneChild.meta.title) }} </span>
           </template>
         </el-menu-item>
       </AppLink>
@@ -32,7 +32,7 @@
         <el-icon v-if="props.item.meta && props.item.meta.elIcon">
           <component :is="props.item.meta && props.item.meta.elIcon" />
         </el-icon>
-        <span> {{ props.item.meta.title }} </span>
+        <span> {{ $t(props.item.meta.title) }} </span>
       </template>
       <SidebarItem
         class="nest-menu"

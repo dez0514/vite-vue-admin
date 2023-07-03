@@ -16,6 +16,7 @@ const localeData = {
 }
 
 export const i18n: I18n = createI18n(localeData)
+console.log('i18n=====', i18n)
 
 export function setupI18n(app: App<Element>) {
   app.use(i18n)
