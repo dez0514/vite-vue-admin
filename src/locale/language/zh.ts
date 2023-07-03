@@ -7,6 +7,9 @@ export default {
     testPermissionIntro: '权限介绍',
     testPermissionAdmin: '权限Admin'
   },
+  views: {
+    login: '登录'
+  },
   header : {
     home : '首页'
   }

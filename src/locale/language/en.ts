@@ -7,6 +7,9 @@ export default {
     testPermissionIntro: 'Permission Intro',
     testPermissionAdmin: 'Permission Admin'
   },
+  views: {
+    login: 'Login'
+  },
   header : {
     home : 'Home'
   }

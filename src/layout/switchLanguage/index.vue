@@ -22,11 +22,15 @@ import { computed } from 'vue'
 import { useConfigStore } from '@/store'
 import { TypeLang } from '@/types/store';
 import { setI18nLanguage } from '@/locale';
+import { useI18n } from 'vue-i18n';
+import { useRoute } from 'vue-router';
 // import { ElMessage } from 'element-plus' // 直接使用，导入会破坏按需引入的样式，导致没有样式
 type LangMenuType = {
   key: TypeLang,
   label: string
 }
+const { t: trans } =  useI18n()
+const route = useRoute()
 const configStore = useConfigStore()
 const language = computed(() => {
   return configStore.language
@@ -38,6 +42,7 @@ const langMenu: LangMenuType[] = [
 const handleChangeLanguage = (t: TypeLang) => {
   configStore.SET_CONFIG({ language: t })
   setI18nLanguage(t)
+  document.title = trans(route.meta.title as string)
   ElMessage({type: 'success', message: '语言切换成功'})
 }
 </script>

@@ -82,7 +82,7 @@ export const constantRoutes = [
     name: 'login',
     component: Login,
     meta: {
-      title: '登录页面'
+      title: 'views.login'
     }
   },
   {
