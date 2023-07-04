@@ -1,6 +1,6 @@
 <template>
   <el-dropdown popper-class="lang-switch" trigger="click">
-    <div class="lang-trigger">
+    <div :class="['lang-trigger', hover ? 'hover_bg' : '']">
       <svg-icon icon-class="lang" />
     </div>
     <template #dropdown>
@@ -18,13 +18,20 @@
   </el-dropdown>
 </template>
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, toRefs } from 'vue'
 import { useConfigStore } from '@/store'
 import { TypeLang } from '@/types/store';
 import { setI18nLanguage } from '@/locale';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 // import { ElMessage } from 'element-plus' // 直接使用，导入会破坏按需引入的样式，导致没有样式
+type Props = {
+  hover?: boolean
+}
+const props = withDefaults(defineProps<Props>(), {
+  hover: true
+})
+const { hover } = toRefs(props)
 type LangMenuType = {
   key: TypeLang,
   label: string
@@ -54,7 +61,7 @@ const handleChangeLanguage = (t: TypeLang) => {
   cursor: pointer;
   font-size: 16px;
   user-select: none;
-  &:hover {
+  &.hover_bg:hover {
     background: rgba(0,0,0,0.06);
   }
 }

@@ -10,6 +10,7 @@ export interface State {
 }
 
 export type TypeLang = 'zh' | 'en'
+export type TypeTheme = 'dark' | 'light' | '' | undefined | null
 
 export interface ConfigState {
   language?: TypeLang

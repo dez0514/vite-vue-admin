@@ -26,7 +26,7 @@ import { computed } from 'vue';
 const configStore = useConfigStore()
 const isShowDraw = computed({
   get() {
-    return configStore.isShowRightDraw
+    return configStore.isShowRightDraw || false
   },
   set(v:boolean) {
     configStore.SET_DRAW_ISSHOW(v)
