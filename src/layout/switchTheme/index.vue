@@ -11,32 +11,37 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed, watch } from 'vue';
-import { useConfigStore } from '@/store'
-const configStore = useConfigStore()
-const isDark = computed(() => {
-  return configStore.theme === 'dark'
-})
+// import { computed, watch } from 'vue';
+// import { useConfigStore } from '@/store'
+import { useDark, useToggle } from '@vueuse/core'
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
+
+// const configStore = useConfigStore()
+// const isDark = computed(() => {
+//   return configStore.theme === 'dark'
+// })
 const handleChangeTheme = () => {
-  let newTheme = ''
-  if(isDark.value) {
-    newTheme = 'light'
-  } else {
-    newTheme = 'dark'
-  }
-  configStore.SET_CONFIG({ theme: newTheme })
+  toggleDark()
+  // let newTheme = ''
+  // if(isDark.value) {
+  //   newTheme = 'light'
+  // } else {
+  //   newTheme = 'dark'
+  // }
+  // configStore.SET_CONFIG({ theme: newTheme })
 }
-const setThemeClass = (isdark: boolean) => {
-  if(isdark) {
-    document.documentElement.setAttribute('class', 'dark')
-  } else {
-    document.documentElement.setAttribute('class', '')
-  }
-}
+// const setThemeClass = (isdark: boolean) => {
+//   if(isdark) {
+//     document.documentElement.setAttribute('class', 'dark')
+//   } else {
+//     document.documentElement.setAttribute('class', '')
+//   }
+// }
 // 立即执行，初始化就给class
-watch(isDark, (val) => {
-  setThemeClass(val)
-}, { immediate: true })
+// watch(isDark, (val) => {
+//   setThemeClass(val)
+// }, { immediate: true })
 
 </script>
 <style lang="scss" scoped>
@@ -59,8 +64,8 @@ watch(isDark, (val) => {
   outline: none;
   border-radius: 10px;
   box-sizing: border-box;
-  border: 1px solid #dcdfe6;
-  background: #f2f2f2;
+  border: 1px solid var(--ep-border-color);
+  background: var(--bg-color-mute);
   cursor: pointer;
   transition: all .3s;
   .switch__action {
@@ -68,9 +73,9 @@ watch(isDark, (val) => {
     top: 1px;
     left: 1px;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: var(--ep-bg-color);
     transform: translate(0);
-    color: #606266;
+    color: var(--ep-text-color-light);
     transition: all .3s;
   }
   &.dark .switch__action {

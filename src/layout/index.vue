@@ -39,6 +39,5 @@ const isShowDraw = computed({
   padding-left: 0;
   padding-right: 0;
   font-size: 12px;
-  background: pink;
 }
 </style>

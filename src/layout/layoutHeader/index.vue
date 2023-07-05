@@ -43,7 +43,7 @@ const handleTriggerCollapse = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #fff;
+  /* background: #fff; */
   box-shadow: 0 1px 4px #00152914;
 }
 .collapse-trigger {

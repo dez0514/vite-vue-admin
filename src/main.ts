@@ -9,6 +9,8 @@ import 'virtual:svg-icons-register'
 import '@/styles/reset.scss'
 import '@/styles/global.scss'
 import './permission'
+// import "element-plus/dist/index.css";
+import "@/styles/index.scss";
 
 const app: App<Element> = createApp(AppVue)
 app.component('svg-icon', SvgIcon)

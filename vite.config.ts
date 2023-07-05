@@ -22,6 +22,13 @@ export default defineConfig(({ command, mode }) => {
     define: {
       'process.env': {}
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "src/styles/element/index.scss" as *;`,
+        },
+      },
+    },
     plugins: [
       vue(),
       viteMockServe({
@@ -46,7 +53,12 @@ export default defineConfig(({ command, mode }) => {
         resolvers: [ElementPlusResolver()],
       }),
       Components({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [
+          ElementPlusResolver({
+            importStyle: 'sass',
+          }),
+        ],
+        dts: 'src/components.d.ts',
       })
     ]
   }
