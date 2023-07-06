@@ -75,7 +75,7 @@ const handleChangeTheme = () => {
     border-radius: 50%;
     background-color: var(--ep-bg-color);
     transform: translate(0);
-    color: var(--ep-text-color-light);
+    color: var(--ep-text-color-regular);
     transition: all .3s;
   }
   &.dark .switch__action {
