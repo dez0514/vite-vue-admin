@@ -1,5 +1,5 @@
 <template>
-  <div class="setting-trigger" @click="handleClickDrawer">
+  <div class="setting-trigger common_hover_btn" @click="handleClickDrawer">
     <el-icon>
       <setting />
     </el-icon>
@@ -20,13 +20,12 @@ const handleClickDrawer = () => {
 <style lang="scss" scoped>
 .setting-trigger {
   padding: 0 15px;
-  height: 50px;
-  line-height: 52px;
+  height: 100%;
   cursor: pointer;
   font-size: 18px;
   user-select: none;
-  &:hover {
-    background: rgba(0,0,0,0.06);
-  }
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 </style>

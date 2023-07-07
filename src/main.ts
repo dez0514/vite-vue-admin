@@ -6,10 +6,8 @@ import { setupI18n } from '@/locale'
 import SvgIcon from '@/components/SvgIcon.vue'
 import 'virtual:svg-icons-register'
 // import { ElMessage } from 'element-plus'
-import '@/styles/reset.scss'
-import '@/styles/global.scss'
 import './permission'
-// import "element-plus/dist/index.css";
+import '@/styles/reset.scss'
 import "@/styles/index.scss";
 
 const app: App<Element> = createApp(AppVue)

@@ -3,11 +3,11 @@
     <el-aside width="auto" style="overflow: hidden">
       <vsider />
     </el-aside>
-    <el-container style="height: 100vh">
-      <el-header class="header-container" height="50px">
+    <el-container>
+      <el-header class="header-container">
         <vheader />
       </el-header>
-      <el-main style="padding: 0;">
+      <el-main class="main-container">
         <el-scrollbar>
           <router-view />
         </el-scrollbar>
@@ -36,8 +36,13 @@ const isShowDraw = computed({
 
 <style lang="scss" scoped>
 .header-container {
+  height: 50px;
   padding-left: 0;
   padding-right: 0;
   font-size: 12px;
+}
+.main-container {
+  padding: 0;
+  height: calc(100vh - 50px);
 }
 </style>

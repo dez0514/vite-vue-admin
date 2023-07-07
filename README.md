@@ -32,3 +32,5 @@ declare module '*.vue' {
 }
 ```
 
+4. 由于 `App.vue` 使用了 `el-config-provider` 且加了 `namespace="ep"`,命名空间，所有修改 `element`元素样式时，类名`class`都不是 `el`了，而是`ep`了 。
+

@@ -1,5 +1,5 @@
 <template>
-  <div id='fullscreen' class="fullscreen" @click="handleFullScreen">
+  <div id='fullscreen' class="fullscreen common_hover_btn" @click="handleFullScreen">
     <svg-icon v-show="!fullScreen" icon-class="fullscreen-open" />
     <svg-icon v-show="fullScreen" icon-class="fullscreen-exit" />
   </div>
@@ -28,12 +28,11 @@ onUnmounted(() => {
 .fullscreen {
   font-size: 20px;
   padding: 0 15px;
-  height: 50px;
-  line-height: 48px;
+  height: 100%;
   cursor: pointer;
   user-select: none;
-  &:hover {
-    background: rgba(0,0,0,0.06);
-  }
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 </style>

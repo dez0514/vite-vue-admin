@@ -1,6 +1,6 @@
 <template>
   <el-dropdown trigger="click">
-    <div class="user-wrapper">
+    <div class="user-wrapper common_hover_btn">
       <el-avatar :src="avatar" />
       <div class="username">{{ name }}</div>
     </div>
@@ -28,18 +28,18 @@ const handleLogout = async () => {
 }
 </script>
 <style lang="scss" scoped>
+.ep-dropdown {
+  height: 100%;
+}
 .user-wrapper {
   padding: 0 15px;
-  height: 50px;
+  height: 100%;
   cursor: pointer;
   font-size: 16px;
   display: flex;
   align-items: center;
   .username {
     margin-left: 5px;
-  }
-  &:hover {
-    background: rgba(0,0,0,0.06);
   }
 }
 a {

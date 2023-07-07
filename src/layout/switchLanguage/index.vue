@@ -1,6 +1,6 @@
 <template>
   <el-dropdown popper-class="lang-switch" trigger="click">
-    <div :class="['lang-trigger', hover ? 'hover_bg' : '']">
+    <div :class="['lang-trigger', hover ? 'common_hover_btn' : '']">
       <svg-icon icon-class="lang" />
     </div>
     <template #dropdown>
@@ -8,7 +8,7 @@
         <el-dropdown-item
           v-for="item in langMenu"
           :key="item.key"
-          :class="{ 'active-lang': language === item.key }"
+          :disabled="language === item.key"
           @click="handleChangeLanguage(item.key)"
         >
           {{ item.label }}
@@ -54,23 +54,17 @@ const handleChangeLanguage = (t: TypeLang) => {
 }
 </script>
 <style lang="scss" scoped>
+.ep-dropdown {
+  height: 100%;
+}
 .lang-trigger {
   padding: 0 15px;
-  height: 50px;
-  line-height: 48px;
+  height: 100%;
   cursor: pointer;
   font-size: 16px;
   user-select: none;
-  &.hover_bg:hover {
-    background: rgba(0,0,0,0.06);
-  }
-}
-:deep(.el-dropdown-menu__item:not(.is-disabled):focus) {
-  background-color: transparent;
-  color: var(--el-text-color-regular);
-}
-:deep(.active-lang) {
-  background-color: var(--el-dropdown-menuItem-hover-fill)!important;
-  color: var(--el-dropdown-menuItem-hover-color)!important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 </style>

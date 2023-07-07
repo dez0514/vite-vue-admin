@@ -1,6 +1,6 @@
 <template>
   <div class="header-wrap">
-    <div>
+    <div class="header-left">
       <div class="collapse-trigger" @click="handleTriggerCollapse">
         <el-icon>
           <Expand v-show="set.isCollapse" />
@@ -39,19 +39,24 @@ const handleTriggerCollapse = () => {
 </script>
 <style lang="scss" scoped>
 .header-wrap {
+  box-sizing: border-box;
   height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   /* background: #fff; */
-  box-shadow: 0 1px 4px #00152914;
+  border-bottom: 1px solid var(--header-border-color);
+  box-shadow: var(--header-shadow);
+}
+.header-left {
+  height: 100%;
 }
 .collapse-trigger {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50px;
-  width: 50px;
+  height: 100%;
+  padding: 0 15px;
   font-size: 16px;
   cursor: pointer;
   &:hover {
@@ -62,5 +67,6 @@ const handleTriggerCollapse = () => {
 .header-right {
   display: flex;
   align-items: center;
+  height: 100%;
 }
 </style>

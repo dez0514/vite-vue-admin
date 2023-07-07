@@ -1,17 +1,41 @@
 // import dark theme
 @use "element-plus/theme-chalk/src/dark/css-vars.scss" as *;
+@use "element-plus/theme-chalk/src/message.scss"; // message
 
 // :root {
 //   --ep-color-primary: red;
 // }
-
-a {
-  color: var(--ep-color-primary);
+:root {
+  --bg-color-mute: #f2f2f2;
+  --header-border-color: transparent;
+  --header-shadow: 0 1px 4px #00152914;
+  --hover-btn-bg: rgba(0,0,0,0.06);
+}
+.dark {
+  --bg-color-mute: #2c2c2c;
+  --header-border-color: var(--ep-border-color);
+  --header-shadow: none;
+  --hover-btn-bg: #2c2c2c;
+}
+// hover btn
+.common_hover_btn:hover {
+  background: var(--hover-btn-bg);
+}
+//  路由动画
+.fade-enter {
+  opacity: 0;
+  transform: translateX(-30px);
 }
 
-code {
-  border-radius: 2px;
-  padding: 2px 4px;
-  background-color: var(--ep-color-primary-light-9);
-  color: var(--ep-color-primary);
+.fade-enter-active,
+.fade-exit-active {
+  opacity: 1;
+  transition: all 500ms ease-out;
+  transform: translateX(0);
 }
+
+.fade-exit {
+  opacity: 0;
+  transform: translateX(30px);
+}
+

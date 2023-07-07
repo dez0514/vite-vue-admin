@@ -11,38 +11,12 @@
   </div>
 </template>
 <script lang="ts" setup>
-// import { computed, watch } from 'vue';
-// import { useConfigStore } from '@/store'
 import { useDark, useToggle } from '@vueuse/core'
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
-
-// const configStore = useConfigStore()
-// const isDark = computed(() => {
-//   return configStore.theme === 'dark'
-// })
 const handleChangeTheme = () => {
   toggleDark()
-  // let newTheme = ''
-  // if(isDark.value) {
-  //   newTheme = 'light'
-  // } else {
-  //   newTheme = 'dark'
-  // }
-  // configStore.SET_CONFIG({ theme: newTheme })
 }
-// const setThemeClass = (isdark: boolean) => {
-//   if(isdark) {
-//     document.documentElement.setAttribute('class', 'dark')
-//   } else {
-//     document.documentElement.setAttribute('class', '')
-//   }
-// }
-// 立即执行，初始化就给class
-// watch(isDark, (val) => {
-//   setThemeClass(val)
-// }, { immediate: true })
-
 </script>
 <style lang="scss" scoped>
 .theme-trigger {
