@@ -18,3 +18,7 @@ export interface ConfigState {
   isShowRightDraw?: boolean
   [key: string]: any
 }
+
+export interface TagviewState {
+  tagsViewArr?: any[]
+}

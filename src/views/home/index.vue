@@ -13,7 +13,12 @@
 </template>
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n'
+import { useRouter, useRoute } from 'vue-router';
+const router = useRouter()
+const route = useRoute()
 const { t } = useI18n()
 import { ref } from 'vue'
 const value1 = ref('')
+console.log(route)
+console.log(router)
 </script>

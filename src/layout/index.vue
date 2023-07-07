@@ -7,6 +7,7 @@
       <el-header class="header-container">
         <vheader />
       </el-header>
+      <TagsView />
       <el-main class="main-container">
         <el-scrollbar>
           <router-view />
@@ -21,6 +22,7 @@
 <script lang="ts" setup>
 import vsider from './layoutSider/index.vue'
 import vheader from './layoutHeader/index.vue'
+import TagsView from './tagsView/index.vue'
 import { useConfigStore } from '@/store/index'
 import { computed } from 'vue';
 const configStore = useConfigStore()
@@ -43,6 +45,6 @@ const isShowDraw = computed({
 }
 .main-container {
   padding: 0;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 50px - 40px);
 }
 </style>

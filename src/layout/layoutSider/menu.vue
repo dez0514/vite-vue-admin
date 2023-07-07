@@ -40,9 +40,6 @@ const set = reactive({
       return meta.activeMenu
     }
     return path
-  }),
-  // routerLists: computed(() => {
-  //   return 
-  // })
+  })
 })
 </script>
