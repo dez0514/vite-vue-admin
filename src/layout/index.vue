@@ -3,7 +3,7 @@
     <el-aside width="auto" style="overflow: hidden">
       <vsider />
     </el-aside>
-    <el-container>
+    <el-container style="position: relative;">
       <el-header class="header-container">
         <vheader />
       </el-header>

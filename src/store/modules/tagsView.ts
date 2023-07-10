@@ -21,40 +21,6 @@ export const useTagsViewStore = defineStore('tagsview', {
         path: '/permissionTest/intro',
         query: {},
         title: '权限介绍'
-      },
-      {
-        path: '/dashboard',
-        query: {},
-        title: '首页',
-        meta: {
-          affix: true
-        }
-      },
-      {
-        path: '/guide',
-        query: {},
-        title: '引导页'
-      },
-      {
-        path: '/permissionTest/intro',
-        query: {},
-        title: '权限介绍'
-      },
-      {
-        path: '/dashboard',
-        query: {},
-        title: '首页',
-        affix: true
-      },
-      {
-        path: '/guide',
-        query: {},
-        title: '引导页'
-      },
-      {
-        path: '/permissionTest/intro',
-        query: {},
-        title: '权限介绍'
       }
     ]
   }),
