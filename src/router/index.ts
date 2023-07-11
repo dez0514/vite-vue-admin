@@ -12,6 +12,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
     meta: {
       title: 'menu.home',
       elIcon: shallowRef(House),
+      affix: true
     },
     component: () => import('@/views/home/index.vue')
   },
