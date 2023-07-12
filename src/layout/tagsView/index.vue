@@ -171,9 +171,9 @@ onMounted(() => {
     cursor: pointer;
     height: 26px;
     line-height: 26px;
-    border: 1px solid #d8dce5;
-    color: #495060;
-    background: #fff;
+    border: 1px solid var(--tagview-border-color);
+    color: var(--tagview-color);
+    background: var(--tagview-bg);
     padding: 0 8px;
     font-size: 14px;
     margin-left: 5px;
@@ -231,7 +231,6 @@ onMounted(() => {
 
 .contextmenu {
   margin: 0;
-  background: #fff;
   z-index: 3000;
   position: absolute;
   list-style-type: none;
@@ -239,16 +238,17 @@ onMounted(() => {
   border-radius: 4px;
   font-size: 14px;
   font-weight: 400;
-  color: #333;
-  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, .3);
-
+  background: var(--ep-bg-color);
+  color: var(--color-contextmenu);
+  border: 1px solid var(--ep-border-color);
+  box-shadow: var(--shadow-contextmenu);
   li {
     margin: 0;
     padding: 7px 16px;
     cursor: pointer;
 
     &:hover {
-      background: #eee;
+      background: var(--hover-btn-bg);
     }
   }
 }

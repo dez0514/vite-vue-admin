@@ -1,7 +1,7 @@
 <template>
   <div class="header-wrap">
     <div class="header-left">
-      <div class="collapse-trigger" @click="handleTriggerCollapse">
+      <div class="collapse-trigger common_hover_btn" @click="handleTriggerCollapse">
         <el-icon>
           <Expand v-show="set.isCollapse" />
           <Fold v-show="!set.isCollapse" />
@@ -59,9 +59,6 @@ const handleTriggerCollapse = () => {
   padding: 0 15px;
   font-size: 16px;
   cursor: pointer;
-  &:hover {
-    background: rgba(0,0,0,0.06);
-  }
 }
 
 .header-right {
