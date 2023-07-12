@@ -35,12 +35,6 @@ const tagsViewArr = computed(() => {
 const routerAllArr = computed(() => {
   return permissionStore.routes || []
 })
-const isActive = (tag: any) => {
-  return tag.path === route.path;
-}
-const isAffix = (tag: any) => {
-  return tag.meta && tag.meta.affix;
-}
 const visibleMenu = ref<boolean>(false)
 const curLeft = ref<number>(0)
 const curTop = ref<number>(0)
@@ -50,6 +44,12 @@ const selectedTag = ref<any>({})
 const scrollWrapper = computed(() => {
   return tagsviewRef?.value?.wrapRef
 })
+const isActive = (tag: any) => {
+  return tag.path === route.path;
+}
+const isAffix = (tag: any) => {
+  return tag.meta && tag.meta.affix;
+}
 const handleScroll = (e: any) => {
   const eventDelta = e.wheelDelta || -e.deltaY * 40
   const $scrollWrapper = scrollWrapper.value
@@ -126,9 +126,7 @@ const closeOthersTags = () => {
 }
 const closeAllTags = () => {
   tagsViewStore.DEL_ALL_TAGVIEWS()
-  if (isActive(selectedTag.value)) {
-    toLastView(tagsViewArr.value)
-  }
+  router.replace({ path: '/' })
 }
 watch(visibleMenu, (val) => {
   if (val) {

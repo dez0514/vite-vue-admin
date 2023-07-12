@@ -9,10 +9,17 @@ export const useTagsViewStore = defineStore('tagsview', {
     ADD_TAGVIEW(payload: any) {
       const isInArr = this.tagsViewArr?.some(item => item.path === payload.path)
       if(isInArr) return
-      this.tagsViewArr?.push({
-        ...payload,
-        title: payload.meta.title || 'no-name'
-      })
+      if(payload.meta.affix) {
+        this.tagsViewArr?.unshift({
+          ...payload,
+          title: payload.meta.title || 'no-name'
+        })
+      } else {
+        this.tagsViewArr?.push({
+          ...payload,
+          title: payload.meta.title || 'no-name'
+        })
+      }
     },
     DEL_TAGVIEW(payload: any) {
       const findex = this.tagsViewArr?.findIndex(item => item.path === payload.path)
