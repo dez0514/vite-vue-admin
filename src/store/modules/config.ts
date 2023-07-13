@@ -8,7 +8,9 @@ export const useConfigStore = defineStore('config', {
     language: sessionStorage.getItem(StorageKeys.LANG) as TypeLang || defaultSetting.language,
     theme: sessionStorage.getItem(StorageKeys.THEME) as TypeTheme || defaultSetting.theme,
     collapse: false,
-    isShowRightDraw: false
+    isShowRightDraw: false,
+    hideLogo: !!(sessionStorage.getItem(StorageKeys.HIDELOGO) === 'true') || defaultSetting.hideLogo,
+    hideTagsView: !!(sessionStorage.getItem(StorageKeys.HIDETAGSVIEW) === 'true')  || defaultSetting.hideTagsView
   }),
   actions: {
     // 合并方法：更新所有的config

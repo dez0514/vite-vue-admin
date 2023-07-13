@@ -3,10 +3,14 @@ interface SettingOpts {
   title?: string
   language?: TypeLang
   theme?: TypeTheme
+  hideLogo?: boolean
+  hideTagsView?: boolean
 }
 const setting: SettingOpts = {
   title: 'Vite Vue Admin',
-  language: 'zh'
+  language: 'zh',
+  hideLogo: false,
+  hideTagsView: false
 }
 
 export default setting

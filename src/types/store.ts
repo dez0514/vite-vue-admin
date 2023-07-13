@@ -16,6 +16,8 @@ export interface ConfigState {
   language?: TypeLang
   collapse?: boolean;
   isShowRightDraw?: boolean
+  hideLogo?: boolean
+  hideTagsView?: boolean
   [key: string]: any
 }
 

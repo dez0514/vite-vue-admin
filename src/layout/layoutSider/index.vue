@@ -39,14 +39,14 @@ const set = reactive({
   border: 0;
 }
 
-.sider-wrapper :deep(.sidebar-menus.el-menu--vertical) {
+.sider-wrapper :deep(.sidebar-menus.ep-menu--vertical) {
   width: 100%; // 必须要
   a, a:active {
     text-decoration: none!important;
   }
-  .el-sub-menu {
+  .ep-sub-menu {
     overflow: hidden;
-    .el-sub-menu__title {
+    .ep-sub-menu__title {
       &:hover {
         background-color:  var(--el-menu-hover-bg-color)!important;
       }
@@ -56,9 +56,9 @@ const set = reactive({
     margin-right: 5px;
     font-size: 16px;
   }
-  &.el-menu--collapse {
-    .el-sub-menu {
-      &>.el-sub-menu__title {
+  &.ep-menu--collapse {
+    .ep-sub-menu {
+      &>.ep-sub-menu__title {
         &>span {
           height: 0;
           width: 0;
@@ -66,7 +66,7 @@ const set = reactive({
           visibility: hidden;
           display: inline-block;
         }
-        &>.el-sub-menu__icon-arrow {
+        &>.ep-sub-menu__icon-arrow {
           display: none;
         }
       }
