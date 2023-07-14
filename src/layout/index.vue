@@ -7,7 +7,7 @@
       <el-header class="header-container">
         <vheader />
       </el-header>
-      <TagsView />
+      <TagsView v-if="!isHideTagView" />
       <el-main class="main-container">
         <el-scrollbar>
           <router-view />
@@ -26,6 +26,9 @@ import TagsView from './tagsView/index.vue'
 import { useConfigStore } from '@/store/index'
 import { computed } from 'vue';
 const configStore = useConfigStore()
+const isHideTagView = computed(() => {
+  return configStore.hideTagsView || false
+}) 
 const isShowDraw = computed({
   get() {
     return configStore.isShowRightDraw || false
