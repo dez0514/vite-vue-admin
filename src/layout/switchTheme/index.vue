@@ -26,7 +26,7 @@ const handleChangeTheme = () => {
   background-color: transparent;
   border-radius: 50%;
   height: 24px;
-  padding: 0 12px;
+  /* padding: 0 12px; */
 }
 
 .switch {

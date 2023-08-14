@@ -3,5 +3,8 @@ export enum StorageKeys {
   LANG = 'lang',
   THEME = 'theme',
   HIDELOGO = 'hideLogo',
-  HIDETAGSVIEW = 'hideTagsView'
+  HIDETAGSVIEW = 'hideTagsView',
+  NOFIXHEAD = 'nofixheader',
+  PRIMARYCOLOR = 'primaryColor',
+  NAVTYPE = 'navType'
 }

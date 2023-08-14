@@ -1,3 +1,5 @@
+// 布局方式 左-右上,上-下左,上-下
+export type TypeNav = 'lt' | 'tl' | 't'
 export interface ThemeOpt {
     primaryColor?: string;
     radius?: number;

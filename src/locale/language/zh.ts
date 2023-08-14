@@ -10,6 +10,9 @@ export default {
   views: {
     login: '登录'
   },
+  setting: {
+    primaryColorValid: '主题颜色不能设置为空'
+  },
   header : {
     home : '首页'
   }

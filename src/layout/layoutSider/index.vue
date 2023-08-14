@@ -1,6 +1,6 @@
 <template>
   <div :class="['sider-wrapper', set.isCollapse ? 'collapse-sider' : '']">
-    <Logo :is-collpase="set.isCollapse" />
+    <Logo v-if="!set.isHideLogo" :is-collpase="set.isCollapse" />
     <div style="height: calc(100vh - 50px)">
       <el-scrollbar>
         <Menu />
@@ -16,10 +16,12 @@ import Menu from './menu.vue'
 import { useConfigStore } from '@/store'
 
 const configStore = useConfigStore()
-
 const set = reactive({
   isCollapse: computed(() => {
     return configStore.collapse
+  }),
+  isHideLogo: computed(() => {
+    return configStore.hideLogo
   })
 })
 </script>

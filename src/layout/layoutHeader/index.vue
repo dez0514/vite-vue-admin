@@ -10,7 +10,6 @@
     </div>
     <div class="header-right">
       <fullscreen />
-      <switchTheme />
       <switchLanguage />
       <userAvatar />
       <setTrigger />
@@ -20,7 +19,6 @@
 <script lang="ts" setup>
 import fullscreen from '../fullscreen/index.vue'
 import switchLanguage from '../switchLanguage/index.vue'
-import switchTheme from '../switchTheme/index.vue'
 import setTrigger from '../setting/trigger.vue'
 import userAvatar from '../userAvatar/index.vue'
 import { Expand, Fold } from '@element-plus/icons-vue'

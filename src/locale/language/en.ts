@@ -10,6 +10,9 @@ export default {
   views: {
     login: 'Login'
   },
+  setting: {
+    primaryColorValid: "The theme color can't be set to empty"
+  },
   header : {
     home : 'Home'
   }
