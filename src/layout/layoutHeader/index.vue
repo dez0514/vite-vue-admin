@@ -7,6 +7,7 @@
           <Fold v-show="!set.isCollapse" />
         </el-icon>
       </div>
+      <Menu mode="horizontal" />
     </div>
     <div class="header-right">
       <fullscreen />
@@ -23,7 +24,8 @@ import setTrigger from '../setting/trigger.vue'
 import userAvatar from '../userAvatar/index.vue'
 import { Expand, Fold } from '@element-plus/icons-vue'
 import { computed, reactive } from 'vue';
-import { useConfigStore } from '@/store'
+import { useConfigStore } from '@/store';
+import Menu from '../layoutSider/menu.vue'
 const configStore = useConfigStore()
 const set = reactive({
   isCollapse: computed(() => {
@@ -48,6 +50,10 @@ const handleTriggerCollapse = () => {
 }
 .header-left {
   height: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 .collapse-trigger {
   display: flex;

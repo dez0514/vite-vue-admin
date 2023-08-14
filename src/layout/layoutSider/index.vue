@@ -1,7 +1,7 @@
 <template>
   <div :class="['sider-wrapper', set.isCollapse ? 'collapse-sider' : '']">
     <Logo v-if="!set.isHideLogo" :is-collpase="set.isCollapse" />
-    <div style="height: calc(100vh - 50px)">
+    <div class="sider-scroll-wrap">
       <el-scrollbar>
         <Menu />
       </el-scrollbar>
@@ -37,8 +37,11 @@ const set = reactive({
   }
 }
 .sidebar-menus {
-  min-height: calc(100vh - 50px);
+  height: calc(100vh - 50px);
   border: 0;
+}
+.sider-scroll-wrap {
+  height: calc(100vh - 50px);
 }
 
 .sider-wrapper :deep(.sidebar-menus.ep-menu--vertical) {

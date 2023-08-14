@@ -7,8 +7,8 @@
     :collapse="set.isCollapse"
     :unique-opened="true"
     :collapse-transition="false"
-    mode="vertical"
-    class="sidebar-menus"
+    :mode="mode"
+    :class="['sidebar-menus', mode === 'horizontal' ? 'horizontal-menu' : '']"
   >
     <SidebarItem
       v-for="item in asyncRoutes"
@@ -26,7 +26,14 @@ import SidebarItem from './sidebarItem.vue'
 import { useRoute } from 'vue-router'
 import { useConfigStore } from '@/store'
 import { asyncRoutes } from '@/router'
-
+import { toRefs } from '@vueuse/core'
+type Props = {
+  mode?: 'vertical' | 'horizontal'
+}
+const props = withDefaults(defineProps<Props>(), {
+  mode: 'vertical'
+})
+const { mode } = toRefs(props)
 const route = useRoute()
 const configStore = useConfigStore()
 
@@ -43,3 +50,15 @@ const set = reactive({
   })
 })
 </script>
+<style lang="scss" scoped>
+.horizontal-menu {
+  width: 100%;
+  & > div {
+    height: 49px;
+  }
+  :deep(.ep-menu-item) {
+    height: 49px;// var(--ep-menu-item-height);
+    line-height: 49px;
+  }
+}
+</style>
