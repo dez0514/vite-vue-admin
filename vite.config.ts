@@ -12,7 +12,7 @@ export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd())
   const { VITE_MOCK_ENABLED = false } = env
   return {
-    base: './',
+    base: '/vite-vue-admin/',
     resolve: {
       alias: {
         // 别名配置
