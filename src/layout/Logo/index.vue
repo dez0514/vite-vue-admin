@@ -27,8 +27,8 @@ const props = defineProps({
 </script>
 <style lang="scss" scoped>
 .logo-wrap {
-  width: 100%;
-  height: 50px;
+  width: inherit;
+  height: 49px;
   background: #2b2f3a;
   a, a:active {
     text-decoration: none!important;

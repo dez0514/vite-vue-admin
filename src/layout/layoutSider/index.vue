@@ -1,6 +1,6 @@
 <template>
   <div :class="['sider-wrapper', set.isCollapse ? 'collapse-sider' : '']">
-    <Logo v-if="!set.isHideLogo" :is-collpase="set.isCollapse" />
+    <Logo v-if="showLogo && !set.isHideLogo" :is-collpase="set.isCollapse" />
     <div class="sider-scroll-wrap">
       <el-scrollbar>
         <Menu />
@@ -14,22 +14,55 @@ import { computed, reactive } from 'vue'
 import Logo from '../Logo/index.vue'
 import Menu from './menu.vue'
 import { useConfigStore } from '@/store'
-
+import { toRefs } from '@vueuse/core';
+type Props = {
+  showLogo?: boolean
+}
 const configStore = useConfigStore()
+const props = withDefaults(defineProps<Props>(), {
+  showLogo: true
+})
+const { showLogo } = toRefs(props)
 const set = reactive({
   isCollapse: computed(() => {
     return configStore.collapse
   }),
   isHideLogo: computed(() => {
     return configStore.hideLogo
+  }),
+  navType: computed(() => {
+    return configStore.navType
+  }),
+  hideTagsView: computed(() => {
+    return configStore.hideTagsView
   })
 })
+const computedHeight = computed(() => {
+  let offsetH = 0
+  if(set.navType === 'tl') {
+    offsetH += 50 // logo 不在侧边栏，始终要减
+    if(!set.hideTagsView) {
+      offsetH += 40
+    }
+  } else {
+    if(!set.isHideLogo) {
+      offsetH += 50
+    }
+  }
+  return `calc(100vh - ${offsetH}px)`
+})
+// const computedHeight = computed(() => {
+//   if(set.navType === 'tl') {
+//     return 'calc(100vh - 50px - 40px)'
+//   }
+//   return 'calc(100vh - 50px)'
+// })
 </script>
 
 <style lang="scss" scoped>
 .sider-wrapper {
   // 宽度给容器，为了让 整个侧边栏动画同步
-  height: 100vh;
+  /* height: 100vh; */
   width: 210px;
   transition: width 0.28s;
   &.collapse-sider {
@@ -37,11 +70,11 @@ const set = reactive({
   }
 }
 .sidebar-menus {
-  height: calc(100vh - 50px);
+  height: v-bind(computedHeight); // calc(100vh - 50px);
   border: 0;
 }
 .sider-scroll-wrap {
-  height: calc(100vh - 50px);
+  height: v-bind(computedHeight);
 }
 
 .sider-wrapper :deep(.sidebar-menus.ep-menu--vertical) {

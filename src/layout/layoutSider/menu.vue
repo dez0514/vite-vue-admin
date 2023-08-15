@@ -60,5 +60,9 @@ const set = reactive({
     height: 49px;// var(--ep-menu-item-height);
     line-height: 49px;
   }
+  :deep(.ep-sub-menu__title) {
+    height: 49px;// var(--ep-menu-item-height);
+    line-height: 49px;
+  }
 }
 </style>

@@ -1,13 +1,14 @@
 <template>
   <div class="header-wrap">
     <div class="header-left">
-      <div class="collapse-trigger common_hover_btn" @click="handleTriggerCollapse">
+      <Logo v-if="set.navType !== 'lt' && !set.isHideLogo" :is-collpase="false" style="width: 210px" />
+      <div v-if="set.navType !== 't'" class="collapse-trigger common_hover_btn" @click="handleTriggerCollapse">
         <el-icon>
           <Expand v-show="set.isCollapse" />
           <Fold v-show="!set.isCollapse" />
         </el-icon>
       </div>
-      <Menu mode="horizontal" />
+      <Menu v-if="set.navType === 't'" mode="horizontal" />
     </div>
     <div class="header-right">
       <fullscreen />
@@ -23,6 +24,7 @@ import switchLanguage from '../switchLanguage/index.vue'
 import setTrigger from '../setting/trigger.vue'
 import userAvatar from '../userAvatar/index.vue'
 import { Expand, Fold } from '@element-plus/icons-vue'
+import Logo from '../Logo/index.vue'
 import { computed, reactive } from 'vue';
 import { useConfigStore } from '@/store';
 import Menu from '../layoutSider/menu.vue'
@@ -30,6 +32,12 @@ const configStore = useConfigStore()
 const set = reactive({
   isCollapse: computed(() => {
     return configStore.collapse
+  }),
+  navType: computed(() => {
+    return configStore.navType
+  }),
+  isHideLogo: computed(() => {
+    return configStore.hideLogo
   })
 })
 const handleTriggerCollapse = () => {
