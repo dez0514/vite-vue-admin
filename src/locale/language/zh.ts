@@ -8,7 +8,8 @@ export default {
     testPermissionAdmin: '权限Admin'
   },
   views: {
-    login: '登录'
+    login: '登录',
+    logining: '正在登录...'
   },
   setting: {
     primaryColorValid: '主题颜色不能设置为空'

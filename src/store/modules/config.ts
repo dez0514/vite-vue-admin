@@ -49,6 +49,7 @@ export const useConfigStore = defineStore('config', {
     },
     SET_PRIMARYCOLOR(payload: string) {
       sessionStorage.setItem(StorageKeys.PRIMARYCOLOR, payload)
+      document.getElementsByTagName('body')[0].style.setProperty('--ep-color-primary', payload);
       this.primaryColor = payload
     },
     SET_NAVTYPE(payload: string) {

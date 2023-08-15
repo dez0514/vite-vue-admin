@@ -1,5 +1,5 @@
 <template>
-  <div class="header-wrap">
+  <div :class="['header-wrap', set.navType === 't' ? 'top_bg' : '']">
     <div class="header-left">
       <Logo v-if="set.navType !== 'lt' && !set.isHideLogo" :is-collpase="false" style="width: 210px" />
       <div v-if="set.navType !== 't'" class="collapse-trigger common_hover_btn" @click="handleTriggerCollapse">
@@ -25,9 +25,11 @@ import setTrigger from '../setting/trigger.vue'
 import userAvatar from '../userAvatar/index.vue'
 import { Expand, Fold } from '@element-plus/icons-vue'
 import Logo from '../Logo/index.vue'
-import { computed, reactive } from 'vue';
+import { computed, reactive, toRefs } from 'vue';
 import { useConfigStore } from '@/store';
 import Menu from '../layoutSider/menu.vue'
+import variables from '@/styles/variables.module.scss'
+const { menuBg } = toRefs(variables)
 const configStore = useConfigStore()
 const set = reactive({
   isCollapse: computed(() => {
@@ -55,6 +57,9 @@ const handleTriggerCollapse = () => {
   /* background: #fff; */
   border-bottom: 1px solid var(--header-border-color);
   box-shadow: var(--header-shadow);
+  &.top_bg {
+    background-color: v-bind(menuBg);
+  }
 }
 .header-left {
   height: 100%;
@@ -77,5 +82,10 @@ const handleTriggerCollapse = () => {
   display: flex;
   align-items: center;
   height: 100%;
+}
+</style>
+<style>
+.top_bg div {
+  color: #fff;
 }
 </style>

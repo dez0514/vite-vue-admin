@@ -11,8 +11,9 @@
   import dayjs from 'dayjs'
   import 'dayjs/locale/zh-cn'
   import 'dayjs/locale/en'
-  import { computed } from 'vue'
+  import { computed, onMounted } from 'vue'
   import { useConfigStore } from '@/store'
+  import { StorageKeys } from './types/enum'
   const configStore = useConfigStore()
   const language = computed(() => {
     return configStore.language
@@ -24,4 +25,10 @@
     console.log('immediate')
     dayjs.locale(language.value === 'en' ? 'en' : 'zh-cn')
   }, { immediate: true })
+  onMounted(() => {
+    const color = sessionStorage[StorageKeys.PRIMARYCOLOR]
+    if(color) {
+      document.getElementsByTagName('body')[0].style.setProperty('--ep-color-primary', color);
+    }
+  })
 </script>

@@ -15,7 +15,7 @@
           <el-input style="height: 40px" type="password" v-model="form.password" show-password clearable @keyup.enter="handleClick" />
         </el-form-item>
         <el-form-item>
-          <el-button style="width: 100%;height: 40px" type="primary" @click="handleClick" :loading="loading">{{!loading ? '登录':'正在登录...'}}</el-button>
+          <el-button style="width: 100%;height: 40px" type="primary" @click="handleClick" :loading="loading">{{!loading ? t('views.login'):t('views.logining')}}</el-button>
         </el-form-item>
       </el-form>
       
@@ -27,6 +27,8 @@ import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store'
 import SwitchLanguage from '@/layout/switchLanguage/index.vue'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 const loading = ref<boolean>(false)
 interface RuleForm {
   username: string

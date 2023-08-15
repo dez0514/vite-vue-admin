@@ -8,7 +8,8 @@ export default {
     testPermissionAdmin: 'Permission Admin'
   },
   views: {
-    login: 'Login'
+    login: 'Login',
+    logining: 'Wait...'
   },
   setting: {
     primaryColorValid: "The theme color can't be set to empty"
