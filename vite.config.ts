@@ -1,11 +1,13 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { resolve } from 'path'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { viteMockServe } from 'vite-plugin-mock'
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
+import { fileURLToPath } from 'node:url'
+import { dirname, resolve } from 'node:path'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -59,6 +61,11 @@ export default defineConfig(({ command, mode }) => {
           }),
         ],
         dts: 'src/components.d.ts',
+      }),
+      VueI18nPlugin({
+        runtimeOnly: false,
+        include: resolve(
+          dirname(fileURLToPath(import.meta.url)), './locale/language/**'),
       })
     ]
   }

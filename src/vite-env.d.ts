@@ -1,4 +1,6 @@
 /// <reference types="vite/client" />
+import { VueI18n } from 'vue-i18n';
+
 
 declare module '*.vue' {
   import { DefineComponent } from 'vue'
