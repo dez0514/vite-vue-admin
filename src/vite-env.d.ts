@@ -1,6 +1,5 @@
 /// <reference types="vite/client" />
 import { VueI18n } from 'vue-i18n';
-declare module 'path';
 
 declare module '*.vue' {
   import { DefineComponent } from 'vue'
@@ -22,3 +21,5 @@ declare module '*.tiff'
 declare module 'element-plus/dist/locale/zh-cn.mjs'
 declare module 'element-plus/dist/locale/en.mjs'
 declare module 'element-plus'
+
+declare module 'path';

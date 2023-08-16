@@ -48,7 +48,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import path from 'path'
+import { resolve } from 'path'
 import { isExternal } from '../../utils/validate'
 import AppLink from './link.vue'
 // eslint-disable-next-line no-undef
@@ -96,7 +96,7 @@ const resolvePath = (routePath: string) => {
   if (isExternal(props.basePath)) {
     return props.basePath
   }
-  return path.resolve(props.basePath, routePath)
+  return resolve(props.basePath, routePath)
 }
 
 defineOptions({
