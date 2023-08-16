@@ -15,7 +15,7 @@
             <component :is="onlyOneChild.meta.elIcon || (props.item.meta && props.item.meta.elIcon)" />
           </el-icon>
           <template #title>
-            <span> {{ $t(onlyOneChild.meta.title) }} </span>
+            <span> {{ t(onlyOneChild.meta.title) }} </span>
           </template>
         </el-menu-item>
       </AppLink>
@@ -32,7 +32,7 @@
         <el-icon v-if="props.item.meta && props.item.meta.elIcon">
           <component :is="props.item.meta && props.item.meta.elIcon" />
         </el-icon>
-        <span> {{ $t(props.item.meta.title) }} </span>
+        <span> {{ t(props.item.meta.title) }} </span>
       </template>
       <SidebarItem
         class="nest-menu"
@@ -48,9 +48,11 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { resolve } from 'path'
 import { isExternal } from '../../utils/validate'
 import AppLink from './link.vue'
+import { useI18n } from 'vue-i18n'
+import path from 'path-browserify';
+const { t } = useI18n()
 // eslint-disable-next-line no-undef
 const props = defineProps({
   item: {
@@ -96,7 +98,7 @@ const resolvePath = (routePath: string) => {
   if (isExternal(props.basePath)) {
     return props.basePath
   }
-  return resolve(props.basePath, routePath)
+  return path.resolve(props.basePath, routePath)
 }
 
 defineOptions({

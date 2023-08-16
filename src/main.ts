@@ -14,7 +14,7 @@ const app: App<Element> = createApp(AppVue)
 app.component('svg-icon', SvgIcon)
 registerStore(app)
 app.use(router)
-await router.isReady()
+// await router.isReady()
 setupI18n(app)
 app.mount('#app')
 

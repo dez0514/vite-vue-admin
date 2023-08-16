@@ -4,7 +4,7 @@
       <div class="scrollbar-content">
         <router-link v-for="tag in tagsViewArr" :key="tag.path" :class="['tags-view-item', isActive(tag) ? 'active' : '']"
           :to="{ path: tag.path, query: tag.query }" tag="span" @contextmenu.prevent.native="openMenu(tag, $event)">
-          {{ $t(tag.title) }}
+          {{ t(tag.title) }}
           <el-icon class="icon-close" v-if="!isAffix(tag)"  @click.prevent.stop="closeSelectedTag(tag)">
             <Close />
           </el-icon>
@@ -25,6 +25,8 @@ import { Close } from '@element-plus/icons-vue'
 import { useTagsViewStore, usePermissionStore } from '@/store/index'
 import { useRoute, useRouter } from 'vue-router';
 import { onMounted } from 'vue';
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
 const tagsViewStore = useTagsViewStore()

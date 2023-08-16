@@ -12,6 +12,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
     "@intlify/unplugin-vue-i18n": "^0.12.2",
+    "@types/path-browserify": "^1.0.0",
     "@types/screenfull": "^4.1.0",
     "@vueuse/core": "^10.2.1",
     "axios": "^1.4.0",
@@ -21,7 +22,7 @@
     "fast-glob": "^3.2.12",
     "mockjs": "^1.1.0",
     "nprogress": "^0.2.0",
-    "path": "^0.12.7",
+    "path-browserify": "^1.0.1",
     "path-to-regexp": "^6.2.1",
     "pinia": "^2.1.4",
     "qs": "^6.11.2",
@@ -34,7 +35,6 @@
     "vue-router": "^4.2.2"
   },
   "devDependencies": {
-    "@types/node": "^20.3.2",
     "@types/nprogress": "^0.2.0",
     "@types/qs": "^6.9.7",
     "@vitejs/plugin-vue": "^4.1.0",

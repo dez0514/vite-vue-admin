@@ -4,6 +4,7 @@
   </el-config-provider>
 </template>
 <script lang="ts" setup>
+// @ts-nocheck
   import { watch } from 'vue'
   import { ElConfigProvider } from 'element-plus'
   import zhCn from 'element-plus/dist/locale/zh-cn.mjs'

@@ -43,10 +43,11 @@ const set = reactive({
     return configStore.collapse
   }),
   activeMenu: computed(() => {
-    const { meta, path } = route
-    if (meta.activeMenu) {
-      return meta.activeMenu
-    }
+    console.log('ccc===',route)
+    const { path } = route
+    // if (meta.activeMenu) {
+    //   return meta.activeMenu
+    // }
     return path
   })
 })

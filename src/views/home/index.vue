@@ -1,6 +1,6 @@
 <template>
   <div>{{ t('header.home') }}</div>
-  <div>{{ $t('header.home') }}</div>
+  <!-- <div>{{ $t('header.home') }}</div> -->
   <div v-t="'header.home'"></div>
   <div>
     <el-date-picker
