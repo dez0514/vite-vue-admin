@@ -9,6 +9,8 @@ import 'virtual:svg-icons-register'
 import './permission'
 import '@/styles/reset.scss'
 import "@/styles/index.scss";
+import '@/styles/tailwind.css'
+import 'driver.js/dist/driver.css'
 
 const app: App<Element> = createApp(AppVue)
 app.component('svg-icon', SvgIcon)

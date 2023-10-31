@@ -15,6 +15,9 @@
   import { computed, onMounted } from 'vue'
   import { useConfigStore } from '@/store'
   import { StorageKeys } from './types/enum'
+  import { useDark, useToggle } from '@vueuse/core'
+  const isDark = useDark()
+  const toggleDark = useToggle(isDark) // 获取一次就行
   const configStore = useConfigStore()
   const language = computed(() => {
     return configStore.language

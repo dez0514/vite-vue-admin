@@ -16,5 +16,21 @@ export default {
   },
   header : {
     home : '首页'
+  },
+  guide: {
+    finish: '完成',
+    close: '跳过',
+    next: '下一步',
+    prev: '上一步',
+    change: {
+      collapse: '侧边栏',
+      collapseDesc: '切换侧边栏显示状态',
+      fullscreen: '全屏',
+      fullscreenDesc: '切换全屏状态',
+      language: '语言',
+      languageDesc: '切换语言',
+      setting: '设置',
+      settingDesc: '系统设置'
+    }
   }
 }

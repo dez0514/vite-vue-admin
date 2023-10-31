@@ -1,5 +1,5 @@
 <template>
-  <component :is="set.type" v-bind="linkProps(props.to)">
+  <component :is="set.type" v-bind="linkProps(props.to)" :style="{ textDecoration: 'none' }">
     <slot />
   </component>
 </template>

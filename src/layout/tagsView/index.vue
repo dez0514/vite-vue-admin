@@ -190,9 +190,9 @@ onMounted(() => {
     }
 
     &.active {
-      background-color: #42b983;
+      background-color: var(--ep-color-primary, #42b983);
       color: #fff;
-      border-color: #42b983;
+      border-color: var(--ep-color-primary, #42b983);
 
       &::before {
         content: '';

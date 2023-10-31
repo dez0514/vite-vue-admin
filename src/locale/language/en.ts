@@ -16,5 +16,21 @@ export default {
   },
   header : {
     home : 'Home'
+  },
+  guide: {
+    finish: 'finish',
+    close: 'close',
+    next: 'next',
+    prev: 'prev',
+    change: {
+      collapse: 'collapse',
+      collapseDesc: 'switch collapse status of sidebar',
+      fullscreen: 'fullscreen',
+      fullscreenDesc: 'switch fullscreen',
+      language: 'language',
+      languageDesc: 'switch language',
+      setting: 'setting',
+      settingDesc: 'system setting'
+    }
   }
 }

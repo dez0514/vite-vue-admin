@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="set-item nav">
-        <div class="set-tit">导航模式</div>
+        <div class="set-tit" style="margin-bottom: 10px;">导航模式</div>
         <div class="set_nav">
           <div class="nav_box type_lt" @click="handleNavType('lt')">
             <div class="left"></div>
@@ -127,6 +127,10 @@ const handleNavType = (v:string) => {
   margin-bottom: 10px;
   &.nav {
     align-items: start;
+    flex-wrap: wrap;
+  }
+  .set-tit {
+    flex-shrink: 0;
   }
 }
 .set_nav {

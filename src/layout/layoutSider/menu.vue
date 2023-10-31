@@ -27,7 +27,6 @@ import { useRoute } from 'vue-router'
 import { useConfigStore } from '@/store'
 import { asyncRoutes } from '@/router'
 import { toRefs } from '@vueuse/core'
-const { menuActiveText } = toRefs(variables)
 type Props = {
   mode?: 'vertical' | 'horizontal'
 }
@@ -55,27 +54,7 @@ const set = reactive({
 <style lang="scss" scoped>
 .horizontal-menu {
   width: 100%;
-  & > div {
-    height: 49px;
-  }
-  :deep(.ep-menu-item) {
-    height: 49px;// var(--ep-menu-item-height);
-    line-height: 49px;
-    &:not(.is-disabled):focus {
-      color: v-bind(menuActiveText);
-    }
-  }
-  :deep(.ep-sub-menu__title) {
-    height: 49px;// var(--ep-menu-item-height);
-    line-height: 49px;
-  }
-  :deep(a:active) {
-    text-decoration: none!important;
-  }
+  border-color: transparent;
 }
 </style>
-<style>
-.nest-menu a, .nest-menu a:active {
-  text-decoration: none!important;
-}
-</style>
+

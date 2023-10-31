@@ -25,6 +25,11 @@
   --tagview-color: #cfd3dc;
   --tagview-border-color: #4C4D4F;
 }
+// 横向的menu 高度与header一致
+.horizontal-menu {
+  --ep-menu-item-height: 49px;
+  --ep-menu-horizontal-height: 49px;
+}
 // hover btn
 .common_hover_btn:hover {
   background: var(--hover-btn-bg);
@@ -68,4 +73,8 @@
 }
 [data-theme=dark] ::-webkit-scrollbar-track {
   background-color: rgba(0,0,0,.05);
+}
+
+.page-margin {
+  margin: 20px;
 }

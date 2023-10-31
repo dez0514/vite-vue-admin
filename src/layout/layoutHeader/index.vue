@@ -2,7 +2,7 @@
   <div :class="['header-wrap', set.navType === 't' ? 'top_bg' : '']">
     <div class="header-left">
       <Logo v-if="set.navType !== 'lt' && !set.isHideLogo" :is-collpase="false" style="width: 210px" />
-      <div v-if="set.navType !== 't'" class="collapse-trigger common_hover_btn" @click="handleTriggerCollapse">
+      <div v-if="set.navType !== 't'" id="sider-trigger" class="collapse-trigger common_hover_btn" @click="handleTriggerCollapse">
         <el-icon>
           <Expand v-show="set.isCollapse" />
           <Fold v-show="!set.isCollapse" />
@@ -11,10 +11,10 @@
       <Menu v-if="set.navType === 't'" mode="horizontal" />
     </div>
     <div class="header-right">
-      <fullscreen />
-      <switchLanguage />
+      <fullscreen id="fullscreen" />
+      <switchLanguage id="language-switch" />
       <userAvatar />
-      <setTrigger />
+      <setTrigger id="system-setting" />
     </div>
   </div>
 </template>
@@ -29,6 +29,7 @@ import { computed, reactive, toRefs } from 'vue';
 import { useConfigStore } from '@/store';
 import Menu from '../layoutSider/menu.vue'
 import variables from '@/styles/variables.module.scss'
+
 const { menuBg } = toRefs(variables)
 const configStore = useConfigStore()
 const set = reactive({
