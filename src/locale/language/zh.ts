@@ -5,7 +5,8 @@ export default {
     export: 'Excel导出',
     testPermission: '测试权限',
     testPermissionIntro: '权限介绍',
-    testPermissionAdmin: '权限Admin'
+    testPermissionAdmin: '权限Admin',
+    outlink: '外链'
   },
   views: {
     login: '登录',

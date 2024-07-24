@@ -58,7 +58,7 @@ const props = defineProps({
     display: block;
     font-size: 14px;
     font-weight: 600;
-    color: #fff;
+    color: #ffffff;
   }
 }
 .logoTitleFade-enter-active {

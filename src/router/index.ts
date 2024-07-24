@@ -5,7 +5,16 @@ import RouterViewBox from '@/components/RouterView.vue';
 import { House, Guide, SetUp, Document, User } from '@element-plus/icons-vue'
 import { shallowRef } from 'vue'
 
-export const asyncRoutes: Array<RouteRecordRaw> = [
+interface OutlinkType {
+  path: string
+  meta: {
+    linkType: string
+    title: string
+    icon: string
+  }
+}
+
+export const asyncRoutes: Array<RouteRecordRaw | OutlinkType> = [
   {
     path: '/dashboard',
     name: 'dashboard',
@@ -75,6 +84,15 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         component: () => import('@/views/excel/export.vue')
       }
     ]
+  },
+  // 外链不需要加到router，addRouter之前过滤掉
+  {
+    path: 'https://github.com/dez0514/vite-vue-admin',
+    meta: {
+      linkType: 'outlink',
+      title: 'menu.outlink',
+      icon: 'zip'
+    }
   }
 ]
 export const constantRoutes = [

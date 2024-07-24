@@ -5,7 +5,8 @@ export default {
     export: 'Excel Export',
     testPermission: 'Permission Test',
     testPermissionIntro: 'Permission Intro',
-    testPermissionAdmin: 'Permission Admin'
+    testPermissionAdmin: 'Permission Admin',
+    outlink: 'Outlink'
   },
   views: {
     login: 'Login',

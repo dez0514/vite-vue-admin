@@ -48,10 +48,11 @@ export const usePermissionStore = defineStore({
     SET_ROUTES(roles) {
       return new Promise(resolve => {
         let accessedRoutes
+        const asRouter = asyncRoutes.filter(item => item && item.meta && item.meta && item.meta.linkType !== 'outlink')
         if (roles.includes('admin')) {
-          accessedRoutes = asyncRoutes || []
+          accessedRoutes = asRouter || []
         } else {
-          accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
+          accessedRoutes = filterAsyncRoutes(asRouter, roles)
         }
         this.addRoutesArr = accessedRoutes
         this.routes = [

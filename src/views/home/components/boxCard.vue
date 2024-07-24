@@ -7,23 +7,23 @@
             <div class='tw-absolute tw-w-[70px] tw-h-[70px] tw-top-[-25px] tw-left-[20px]'>
                 <Thumb :image="avatar" :text="name" />
             </div>
-            <TextHover class="tw-absolute tw-right-[20px] tw-top-[20px] tw-text-[25px] tw-font-bold" text="Vue3 ElementPlus Admin" style="position: absolute" />
+            <TextHover class="tw-absolute tw-right-[20px] tw-top-[20px] tw-text-[25px] tw-font-bold" text="Vue3 ElementPlus" style="position: absolute" />
             <div>
                 <div>
                     <div>Vue3</div>
-                    <el-progress :percentage="90" />
+                    <el-progress style="margin-bottom: 8px;" :percentage="90" />
                 </div>
                 <div>
                     <div>JavaScript</div>
-                    <el-progress :percentage="95" />
+                    <el-progress style="margin-bottom: 8px;" :percentage="95" />
                 </div>
                 <div>
                     <div>Pinia</div>
-                    <el-progress :percentage="30" />
+                    <el-progress style="margin-bottom: 8px;" :percentage="30" />
                 </div>
                 <div>
                     <div>TypeScript</div>
-                    <el-progress :percentage="85" />
+                    <el-progress style="margin-bottom: 8px;" :percentage="85" />
                 </div>
                 <div>
                     <div>Vue Router</div>

@@ -5,7 +5,7 @@
         <div style="font-weight: bold;">新手指引</div>
       </template>
       <div>
-        引导页对于一些第一次进入项目的人很有用，你可以简单介绍下项目的功能。本Demo是基于
+        引导页对于一些第一次进入项目的人很有用，你可以简单介绍下项目的功能。许多UI库已有组件支持，例如：tdesign（Guide）, ant-design（Tour）。elementUI还没有～，本Demo基于
         <a href="https://driverjs.com" target="_blank">driver.js</a>
       </div>
     </el-card>
